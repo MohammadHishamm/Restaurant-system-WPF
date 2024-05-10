@@ -1,0 +1,82 @@
+# Visual Studio generated files
+.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# ReSharper specific
+_ReSharper/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core
+program.lock.json
+program.fragment.lock.json
+artifacts/
+
+# Mono development files
+MonoBleedingEdge/
+MonoSnapshots/
+
+# Temporary files
+*.jfm
+*.log
+
+# Thumbnails
+Thumbs.db
+ehthumbs.db
+# Resharper files
+_ReSharper*/
+# Recycle Bin specific
+$RECYCLE.BIN/
+
+# Visual Studio Code specific
+.vscode/
+
+# Windows installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# IntelliJ IDEA specific
+.idea/
+
+# Mono crash report
+mono_crash.*
+
+# Custom build output directories (if any)
+/build/
+
+# Custom project-specific files
+/program/program/obj/
+/program/.vs/
+
+# NuGet packages
+packages/
+
+# Resharper files
+_ReSharper*/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
