@@ -4,11 +4,86 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SideBar_Nav.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1">
+      mc:Ignorable="d" d:DesignWidth="866"
+      Title="Page1" Height="800" Background="white">
 
-    <Grid Background="#f1f3f5">
-        <TextBlock Text="PAGE 1" FontFamily="ubuntu" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFB197FC" FontSize="60" FontWeight="Bold"/>
+    <Grid Margin="300,0,0,0">
+        <Grid HorizontalAlignment="Center" Background="white">
+            <Menu Background="white" Margin="-320,100,0,0">
+                <MenuItem Header="Burger"/>
+                <MenuItem Header="Pizza"/>
+                <MenuItem Header="Salads"/>
+                <MenuItem Header="Baverages"/>
+                <MenuItem Header="Drinks"/>
+            </Menu>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Margin="10,150,0,0" >
+            <!-- Burger -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Burger" HorizontalAlignment="Center"/>
+                <TextBlock Text="$5.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Pizza -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Pizza" HorizontalAlignment="Center"/>
+                <TextBlock Text="$8.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Salad -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Salad" HorizontalAlignment="Center"/>
+                <TextBlock Text="$4.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Pasta -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Pasta" HorizontalAlignment="Center"/>
+                <TextBlock Text="$7.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,400,0,-73">
+            <!-- Burger -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Burger" HorizontalAlignment="Center"/>
+                <TextBlock Text="$5.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Pizza -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Pizza" HorizontalAlignment="Center"/>
+                <TextBlock Text="$8.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Salad -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Salad" HorizontalAlignment="Center"/>
+                <TextBlock Text="$4.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Pasta -->
+            <StackPanel Margin="10" Width="200">
+                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
+                <TextBlock Text="Pasta" HorizontalAlignment="Center"/>
+                <TextBlock Text="$7.99" HorizontalAlignment="Center"/>
+                <Button Content="Order" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
+
 </Page>
