@@ -78,9 +78,14 @@ namespace program
 
         private void signup(object sender, RoutedEventArgs e)
         {
-            
+             NavigationService.Navigate(new Index());
 
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+             NavigationService.Navigate(new Signin());
         }
     }
     }

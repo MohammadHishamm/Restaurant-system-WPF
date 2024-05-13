@@ -82,6 +82,10 @@ namespace program
         {
             txtEmail.Focus();
         }
+        private void SignupButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Page5());
+        }
 
         private void LoginFrame_Navigated(object sender, NavigationEventArgs e)
         {
