@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace program
 {
@@ -54,10 +55,15 @@ namespace program
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(passwordBox.Password))
-            //{
-            //    MessageBox.Show("Successfully Signed In");
-            //}
+            DBconfig db = new DBconfig();
+            db.OpenConnection();
+            string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
+            SqlCommand command = new SqlCommand(query, db.GetConn());
+            command.Parameters.AddWithValue("@Email", txtEmail.Text);
+            command.Parameters.AddWithValue("@Password", passwordBox.Password);
+            command.ExecuteNonQuery();
+
+            db.CloseConnection();
             NavigationService.Navigate(new Index());
 
         }
