@@ -1,15 +1,32 @@
+﻿using System;
+using program;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace program
 {
-    public partial class Login : UserControl
+    /// <summary>
+    /// Interaction logic for Signin.xaml
+    /// </summary>
+    public partial class Signin : Page
     {
-        public Login()
+        public Signin()
         {
             InitializeComponent();
         }
+
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -37,11 +54,15 @@ namespace program
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(passwordBox.Password))
-            {
-                MessageBox.Show("Successfully Signed In");
-            }
+            //if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(passwordBox.Password))
+            //{
+            //    MessageBox.Show("Successfully Signed In");
+            //}
+            NavigationService.Navigate(new Index());
+
         }
+      
+
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -55,5 +76,11 @@ namespace program
         {
             txtEmail.Focus();
         }
+
+        private void LoginFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }
+

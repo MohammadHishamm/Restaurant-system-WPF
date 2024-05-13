@@ -9,14 +9,26 @@ namespace program
         {
             InitializeComponent();
 
-            // Navigate to the login page when the MainWindow is loaded
-            NavigateToLoginPage();
+            NavigateToSigninPage();
+
+
         }
 
-        // Method to navigate to the login page
-        private void NavigateToLoginPage()
+  
+        private void NavigateToSigninPage()
         {
-            MainFrame.Navigate(new Login());
+            MainFrame.Navigate(new Signin());
         }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+          
+        }
+
+
+    
+
+
+
     }
 }
