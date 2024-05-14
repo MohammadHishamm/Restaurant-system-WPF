@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -93,8 +94,12 @@ namespace program
 
         private void signup(object sender, RoutedEventArgs e)
         {
-            if (confpass.Password == passwordBox1.Password)
+            
+
+
+            if (confpass.Password == passwordBox1.Password && !string.IsNullOrEmpty(passwordBox1.Password) && passwordBox1.Password.Length >= 7 && IsValidEmail(txtEmail1.Text))
             {
+                
                 DBconfig db = new DBconfig();
                 db.OpenConnection();
                 string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
@@ -109,7 +114,7 @@ namespace program
             }
             else
             {
-                MessageBox.Show("Confirm password is not like the password entered before");
+                MessageBox.Show("Error occurred!\n\nPlease ensure that:\n- Email is in the correct format.\n- Password is at least 7 characters long.\n- Confirm password matches the password entered.\n- No empty data is allowed.");
             }
 
 
@@ -119,6 +124,16 @@ namespace program
         {
              NavigationService.Navigate(new Signin());
         }
+
+
+        private bool IsValidEmail(string email)
+        {
+            // Regex pattern for email validation
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(email);
+        }
+
     }
     }
 
