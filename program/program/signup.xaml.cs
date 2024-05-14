@@ -74,9 +74,9 @@ namespace program
             txtEmail1.Focus();
         }
 
-        private void confirm_TextChanged(object sender, TextChangedEventArgs e)
+        private void confirm_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(confpass.Text) && confpass.Text.Length > 0)
+            if (!string.IsNullOrEmpty(confpass.Password) && confpass.Password.Length > 0)
                 confirmpass.Visibility = Visibility.Collapsed;
             else
                 confirmpass.Visibility = Visibility.Visible;
@@ -93,7 +93,17 @@ namespace program
 
         private void signup(object sender, RoutedEventArgs e)
         {
-             NavigationService.Navigate(new Index());
+            DBconfig db = new DBconfig();
+            db.OpenConnection();
+            string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
+            SqlCommand command = new SqlCommand(query, db.GetConn());
+            command.Parameters.AddWithValue("@Email", txtEmail1.Text);
+            command.Parameters.AddWithValue("@Password", passwordBox1.Password);
+            command.ExecuteNonQuery();
+
+            db.CloseConnection();
+
+            NavigationService.Navigate(new Index());
 
 
         }

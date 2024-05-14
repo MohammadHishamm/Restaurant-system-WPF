@@ -83,8 +83,9 @@
                         </Grid.ColumnDefinitions>
 
                         <!--<Image Source="/Images/Email.png" Height="20" />-->
-                        <TextBlock x:Name="confirmpass" MouseDown="confirm_MouseDown" Text="Confirm password" Style="{StaticResource textHint}" />
-                        <TextBox Name="confpass" TextChanged="confirm_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="confirmpass" MouseDown="confirm_MouseDown" Text="Password" Style="{StaticResource textHint}" />
+
+                        <PasswordBox x:Name="confpass" PasswordChanged="confirm_PasswordChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 

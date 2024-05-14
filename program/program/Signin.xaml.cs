@@ -55,15 +55,7 @@ namespace program
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DBconfig db = new DBconfig();
-            db.OpenConnection();
-            string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
-            SqlCommand command = new SqlCommand(query, db.GetConn());
-            command.Parameters.AddWithValue("@Email", txtEmail.Text);
-            command.Parameters.AddWithValue("@Password", passwordBox.Password);
-            command.ExecuteNonQuery();
-
-            db.CloseConnection();
+           
             NavigationService.Navigate(new Index());
 
         }
