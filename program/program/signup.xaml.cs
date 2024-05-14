@@ -33,7 +33,7 @@ namespace program
 
 
 
-            private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+            private void Border_MouseDown1(object sender, MouseButtonEventArgs e)
             {
             if (e.ChangedButton == MouseButton.Left)
                 Window.GetWindow(this).DragMove();
@@ -44,37 +44,52 @@ namespace program
             Application.Current.Shutdown();
         }
 
-            private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+            private void PasswordBox_PasswordChanged1(object sender, RoutedEventArgs e)
             {
-            if (!string.IsNullOrEmpty(passwordBox.Password) && passwordBox.Password.Length > 0)
-                textPassword.Visibility = Visibility.Collapsed;
+            if (!string.IsNullOrEmpty(passwordBox1.Password) && passwordBox1.Password.Length > 0)
+                textPassword1.Visibility = Visibility.Collapsed;
             else
-                textPassword.Visibility = Visibility.Visible;
+                textPassword1.Visibility = Visibility.Visible;
         }
 
-            private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
+            private void textPassword_MouseDown1(object sender, MouseButtonEventArgs e)
             {
-            passwordBox.Focus();
+            passwordBox1.Focus();
         }
 
             
 
 
 
-            private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
+            private void txtEmail_TextChanged1(object sender, TextChangedEventArgs e)
             {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
-                textEmail.Visibility = Visibility.Collapsed;
+            if (!string.IsNullOrEmpty(txtEmail1.Text) && txtEmail1.Text.Length > 0)
+                textEmail1.Visibility = Visibility.Collapsed;
             else
-                textEmail.Visibility = Visibility.Visible;
+                textEmail1.Visibility = Visibility.Visible;
         }
 
-            private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
+            private void textEmail_MouseDown1(object sender, MouseButtonEventArgs e)
             {
-            txtEmail.Focus();
+            txtEmail1.Focus();
         }
 
-           
+        private void confirm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(confpass.Text) && confpass.Text.Length > 0)
+                confirmpass.Visibility = Visibility.Collapsed;
+            else
+                confirmpass.Visibility = Visibility.Visible;
+        }
+
+        private void confirm_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            confpass.Focus();
+        }
+
+
+
+
 
         private void signup(object sender, RoutedEventArgs e)
         {

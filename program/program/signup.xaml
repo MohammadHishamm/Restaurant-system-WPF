@@ -36,7 +36,7 @@
             </Grid>
         </Border>
 
-        <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
+        <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown1">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Sign up with us" Foreground="#3AB19B" Style="{StaticResource TitleText}" />
                 <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
@@ -53,8 +53,8 @@
                         </Grid.ColumnDefinitions>
 
                         <!--<Image Source="/Images/Email.png" Height="20" />-->
-                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" />
-                        <TextBox Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="textEmail1" MouseDown="textEmail_MouseDown1" Text="Email" Style="{StaticResource textHint}" />
+                        <TextBox Name="txtEmail1" TextChanged="txtEmail_TextChanged1" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -68,12 +68,13 @@
                         </Grid.ColumnDefinitions>
 
                         <!--<Image Source="/Images/Lock.png" Height="20" />-->
-                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
+                        <TextBlock x:Name="textPassword1" MouseDown="textPassword_MouseDown1" Text="Password" Style="{StaticResource textHint}" />
                        
-                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource textBox}" />
+                        <PasswordBox x:Name="passwordBox1" PasswordChanged="PasswordBox_PasswordChanged1" Style="{StaticResource textBox}" />
                     
                     </Grid>
                 </Border>
+                <!-- Confirm password:-->
                 <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
@@ -82,8 +83,8 @@
                         </Grid.ColumnDefinitions>
 
                         <!--<Image Source="/Images/Email.png" Height="20" />-->
-                        <TextBlock x:Name="confirmpass" MouseDown="textEmail_MouseDown" Text="Confirm password" Style="{StaticResource textHint}" />
-                        <TextBox Name="confpass" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="confirmpass" MouseDown="confirm_MouseDown" Text="Confirm password" Style="{StaticResource textHint}" />
+                        <TextBox Name="confpass" TextChanged="confirm_TextChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
