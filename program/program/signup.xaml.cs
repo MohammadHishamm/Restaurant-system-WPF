@@ -94,8 +94,8 @@ namespace program
 
         private void signup(object sender, RoutedEventArgs e)
         {
+            Encryption encryption = new Encryption();
             
-
 
             if (confpass.Password == passwordBox1.Password && !string.IsNullOrEmpty(passwordBox1.Password) && passwordBox1.Password.Length >= 7 && IsValidEmail(txtEmail1.Text))
             {
@@ -105,7 +105,7 @@ namespace program
                 string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
                 SqlCommand command = new SqlCommand(query, db.GetConn());
                 command.Parameters.AddWithValue("@Email", txtEmail1.Text);
-                command.Parameters.AddWithValue("@Password", passwordBox1.Password);
+                command.Parameters.AddWithValue("@Password", encryption.Encrypt(passwordBox1.Password));
                 command.ExecuteNonQuery();
 
                 db.CloseConnection();
