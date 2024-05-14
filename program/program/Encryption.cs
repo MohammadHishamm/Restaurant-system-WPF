@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Encryption
+    internal class Encryption    //SRP
     {
         // Standard AES key (32 bytes)
         private static readonly byte[] Key = Encoding.UTF8.GetBytes("12345678901234567890123456789012");
