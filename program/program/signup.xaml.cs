@@ -93,17 +93,24 @@ namespace program
 
         private void signup(object sender, RoutedEventArgs e)
         {
-            DBconfig db = new DBconfig();
-            db.OpenConnection();
-            string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
-            SqlCommand command = new SqlCommand(query, db.GetConn());
-            command.Parameters.AddWithValue("@Email", txtEmail1.Text);
-            command.Parameters.AddWithValue("@Password", passwordBox1.Password);
-            command.ExecuteNonQuery();
+            if (confpass.Password == passwordBox1.Password)
+            {
+                DBconfig db = new DBconfig();
+                db.OpenConnection();
+                string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
+                SqlCommand command = new SqlCommand(query, db.GetConn());
+                command.Parameters.AddWithValue("@Email", txtEmail1.Text);
+                command.Parameters.AddWithValue("@Password", passwordBox1.Password);
+                command.ExecuteNonQuery();
 
-            db.CloseConnection();
+                db.CloseConnection();
 
-            NavigationService.Navigate(new Index());
+                NavigationService.Navigate(new Index());
+            }
+            else
+            {
+                MessageBox.Show("Confirm password is not like the password entered before");
+            }
 
 
         }
