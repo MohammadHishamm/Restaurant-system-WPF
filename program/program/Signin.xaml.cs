@@ -73,7 +73,7 @@ namespace program
             }
             else
             {
-                MessageBox.Show("Error occurred!\n\nPlease ensure that:\n- Enter a VALID USER \n- Email is in the correct format.\n- Password is correct\n- No empty data is allowed.");
+                MessageBox.Show("Error occurred!\n\nPlease ensure that:\n- Enter a VALID USER! \n- Email is in the correct format.\n- Password is correct.\n- No empty data is allowed.");
 
             }
 

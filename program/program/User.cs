@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class User
+    internal class User   // Encapsulation 
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        private int Id { get; set; }
+        private string Email { get; set; }
+        private string Password { get; set; }
 
         // Constructor
         public User(string email, string password)
