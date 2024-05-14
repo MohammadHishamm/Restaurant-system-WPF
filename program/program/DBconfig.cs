@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace program
 {
-    public class DBconfig
+    public class DBconfig  //Singleton design pattern
     {
         private static DBconfig instance;
         private readonly string connectionString;

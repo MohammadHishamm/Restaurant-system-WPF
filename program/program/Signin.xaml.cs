@@ -55,11 +55,32 @@ namespace program
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
-            NavigationService.Navigate(new Index());
+            string email = txtEmail.Text;
+            string password = passwordBox.Password;
+
+            // Create a User object
+            User user = new User(email, password);
+
+            // Perform user authentication
+            UserCheck userChecker = new UserCheck();
+            bool userExists = userChecker.SearchUser(user);
+
+            // Navigate or display message based on authentication result
+            if (userExists)
+            {
+               
+                NavigationService.Navigate(new Index());
+            }
+            else
+            {
+                MessageBox.Show("Error occurred!\n\nPlease ensure that:\n- Enter a VALID USER \n- Email is in the correct format.\n- Password is correct\n- No empty data is allowed.");
+
+            }
+
+
 
         }
-      
+
 
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
