@@ -36,15 +36,15 @@ namespace program
             inventory.ViewInventoryItems();
         }
 
-        public void AddMenuItemToMenu(Menu menu, MenuItem menuItem)
+        public void AddMenuItemToMenu(Menu menu, int menuItemID, string title, string description, decimal price)
         {
             if (!menus.Contains(menu))
             {
                 menus.Add(menu);
             }
 
-            menu.AddMenuItem(menuItem);
-            Console.WriteLine($"Added {menuItem.Title} to menu {menu.MenuID}.");
+            menu.AddMenuItem(menuItemID, title, description, price);
+            Console.WriteLine($"Added {title} to menu {menu.MenuID}.");
         }
 
         public void RemoveMenuItemFromMenu(Menu menu, MenuItem menuItem)

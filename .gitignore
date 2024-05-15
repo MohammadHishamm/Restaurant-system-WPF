@@ -80,3 +80,4 @@ _ReSharper*/
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
+/program/program/DBconfig.cs

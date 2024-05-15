@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Menu
+    internal abstract class Menu
     {
         public int MenuID { get; private set; }
         public List<MenuItem> MenuItems { get; private set; }
 
-        public Menu(int menuID)
+        protected Menu(int menuID)
         {
             MenuID = menuID;
             MenuItems = new List<MenuItem>();
         }
-        public void AddMenuItem(MenuItem item)
+
+        public void AddMenuItem(int menuItemID, string title, string description, decimal price)
         {
+            var item = CreateMenuItem(menuItemID, title, description, price);
             MenuItems.Add(item);
         }
-
 
         public void RemoveMenuItem(MenuItem item)
         {
             MenuItems.Remove(item);
         }
-
 
         public void ViewMenu()
         {
@@ -34,8 +34,11 @@ namespace program
             Console.WriteLine("Menu Items:");
             foreach (var item in MenuItems)
             {
-                Console.WriteLine($"{item.Title} - ${item.Price}");
+                Console.WriteLine($"{item.MenuItemID}: {item.Title} - ${item.Price}");
             }
         }
+
+       
+        protected abstract MenuItem CreateMenuItem(int menuItemID, string title, string description, decimal price);
     }
 }
