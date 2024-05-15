@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Order
+    internal class Order 
     {
         public int OrderID { get; private set; }
         public string Status { get; set; }
         public List<MenuItem> MenuItems { get; private set; }
+        private List<IObserver> observers;
 
         public Order(int orderID, string status)
         {
             OrderID = orderID;
             Status = status;
             MenuItems = new List<MenuItem>();
+            observers = new List<IObserver>(); ;
         }
 
         public void AddMenuItem(MenuItem menuItem)
@@ -24,6 +26,7 @@ namespace program
 
             MenuItems.Add(menuItem);
             Console.WriteLine($"Added '{menuItem.Title}' to order {OrderID}.");
+          
         }
 
         public void RemoveMenuItem(MenuItem menuItem)
@@ -47,5 +50,42 @@ namespace program
                 Console.WriteLine($"ID: {item.MenuItemID}, Title: {item.Title}, Description: {item.Description}, Price: {item.Price}");
             }
         }
+
+        public void Attach(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Detach(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(this);
+                observer.NotifyCustomer(this);
+            }
+        }
+
+
+        public void ChangeStatus(string newStatus)
+        {
+            Status = newStatus;
+            Notify();
+
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Customer
+    internal class Customer : IObserver
     {
         public string Name { get; set; }
         public string ContactNumber { get; set; }
@@ -40,6 +40,16 @@ namespace program
             waiter.CreateOrder(order);
 
             Console.WriteLine($"Order placed successfully. Order ID: {orderId}");
+        }
+        public void Update(Order order)
+        {
+           
+        }
+
+        public void NotifyCustomer(Order order)
+        {
+           
+            Console.WriteLine($"Dear {Name}, your order {order.OrderID} status has been updated to {order.Status}.");
         }
 
     }
