@@ -113,5 +113,44 @@ namespace program
             }
         }
 
+        public List<MenuItem> GetMenuItems()
+        {
+            List<MenuItem> menuItems = new List<MenuItem>();
+            string query = "SELECT AdId, Title, Description, Price FROM Menuitem";
+
+            try
+            {
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string title = reader.GetString(1);
+                            string description = reader.GetString(2);
+                            decimal price = reader.GetDecimal(3);
+                            MenuItem item = new MenuItem(id, title, description, price);
+                            menuItems.Add(item);
+
+                           
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error occurred while fetching menu items: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return menuItems;
+        }
+
+
     }
 }

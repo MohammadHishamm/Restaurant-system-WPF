@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:program"
         mc:Ignorable="d"
-         Height="600" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Title="AddNewOrder" >
+        Height="600" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="AddNewOrder">
 
-    <Border Background="LightGray" BorderThickness="3" BorderBrush="Black">
+    <Border Background="LightGray" BorderThickness="3">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -33,13 +33,14 @@
                     <TextBlock Text="Table" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
                     <ComboBox x:Name="TablesComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center"/>
                 </StackPanel>
-
+             
                 <StackPanel Orientation="Vertical" Grid.Row="2">
                     <TextBlock Text="Quantity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
                     <TextBox x:Name="QuantityTextBox" FontSize="13" FontFamily="Arial" Foreground="Black" Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
-                <Button Grid.Row="3" Content="Add" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40">
+
+                <Button Grid.Row="3" Content="Add" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" Click="AddButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="LightBlue"/>
@@ -50,34 +51,27 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
                 </Button>
+
 
                 <DataGrid Grid.Row="4" x:Name="UsersDataGrid" Background="Transparent" HorizontalAlignment="Stretch" Height="auto" Width="auto" BorderThickness="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1" HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Width="60"/>
-                        <DataGridTextColumn Header="Price" Width="60"/>
-                        <DataGridTextColumn Header="Quantity" Width="80"/>
-                        <DataGridTemplateColumn Header="#" Width="*">
+                        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
+                        <DataGridTemplateColumn Header="#">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto">
-                                        <Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0">
-                                            <Image Source="../Resources/Images/delete.png"/>
-                                        </Button>
-                                    </StackPanel>
+                                    <Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0">
+                                        <Image Source="../Resources/Images/delete.png"/>
+                                    </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+
+
             </Grid>
 
             <Grid Grid.Row="1">
@@ -130,5 +124,4 @@
             </Grid>
         </Grid>
     </Border>
-
 </Window>
