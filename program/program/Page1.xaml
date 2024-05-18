@@ -7,83 +7,69 @@
       mc:Ignorable="d" d:DesignWidth="866"
       Title="Page1" Height="800" Background="white">
 
-    <Grid Margin="300,0,0,0">
-        <Grid HorizontalAlignment="Center" Background="white">
-            <Menu Background="white" Margin="-320,100,0,0">
-                <MenuItem Header="Burger"/>
-                <MenuItem Header="Pizza"/>
-                <MenuItem Header="Salads"/>
-                <MenuItem Header="Baverages"/>
-                <MenuItem Header="Drinks"/>
-            </Menu>
-        </Grid>
-        <StackPanel Orientation="Horizontal" Margin="10,150,0,0" >
-            <!-- Burger -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Burger" HorizontalAlignment="Center"/>
-                <TextBlock Text="$5.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
 
-            <!-- Pizza -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Pizza" HorizontalAlignment="Center"/>
-                <TextBlock Text="$8.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
+	
 
-            <!-- Salad -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Salad" HorizontalAlignment="Center"/>
-                <TextBlock Text="$4.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
+	<Border>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="60"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
 
-            <!-- Pasta -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Pasta" HorizontalAlignment="Center"/>
-                <TextBlock Text="$7.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
+			<Border Grid.Row="0">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="2*"/>
+						<ColumnDefinition Width="1*"/>
+					</Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="0,400,0,-73">
-            <!-- Burger -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Burger" HorizontalAlignment="Center"/>
-                <TextBlock Text="$5.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
+					<Button x:Name="AddNewItem" Grid.Column="0" Content="Add Order" HorizontalAlignment="Left"
+                            FontSize="12" Margin="50,0,0,0" Height="40" Width="120" Command=""/>
 
-            <!-- Pizza -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Pizza" HorizontalAlignment="Center"/>
-                <TextBlock Text="$8.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
+					<ComboBox x:Name="Users" Grid.Column="0" Margin="190,0,0,0" Height="40" Width="120" HorizontalAlignment="Left"
+                              FontSize="12" HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"  />
 
-            <!-- Salad -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Salad" HorizontalAlignment="Center"/>
-                <TextBlock Text="$4.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
+					<ComboBox x:Name="Month" Grid.Column="1" Margin="0,0,50,0" Height="40" Width="120" HorizontalAlignment="Right"
+                              FontSize="12" HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center" />
+					<ComboBox x:Name="Year" Grid.Column="1" Margin="0,0,190,0" Height="40" Width="120" HorizontalAlignment="Right"
+                              FontSize="12" HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"  />
 
-            <!-- Pasta -->
-            <StackPanel Margin="10" Width="200">
-                <Image Source="https://via.placeholder.com/150" Width="150" Height="150" Stretch="Uniform"/>
-                <TextBlock Text="Pasta" HorizontalAlignment="Center"/>
-                <TextBlock Text="$7.99" HorizontalAlignment="Center"/>
-                <Button Content="Order" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+				</Grid>
+			</Border>
 
+			<Border Grid.Row="1">
+				<DataGrid x:Name="UsersDataGrid" Background="Transparent" MinWidth="951" HorizontalAlignment="Stretch" Margin="50,5,50,35" Height="auto" Width="auto"
+                          BorderThickness="1" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
+                          HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+						<DataGridTextColumn Header="Created" Binding="{Binding Created}" Width="*"/>
+						<DataGridTextColumn Header="Table" Binding="{Binding TableId}" Width="*"/>
+						<DataGridTemplateColumn Header="#" Width="100">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto">
+										<Button x:Name="EditItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
+                                                BorderThickness="0" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}">
+											<Image Source="../Resources/Images/details.png"/>
+										</Button>
+										<Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
+                                                BorderThickness="0" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}">
+											<Image Source="../Resources/Images/delete.png"/>
+										</Button>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Border>
+		</Grid>
+	</Border>
 </Page>

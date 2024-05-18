@@ -21,12 +21,28 @@ namespace program
             observers = new List<IObserver>(); ;
         }
 
-        public void AddMenuItem(MenuItem menuItem)
+        public void AddItemToDatabase(string itemName, int quantity)
         {
+            try
+            {
+                // Create an instance of the DBconfig class
+                DBconfig db = DBconfig.Instance;
 
-            MenuItems.Add(menuItem);
-            Console.WriteLine($"Added '{menuItem.Title}' to order {OrderID}.");
-          
+                // Open connection
+                db.OpenConnection();
+
+                // Insert item into the database
+                string insertQuery = $"INSERT INTO Order (Name, Quantity) VALUES ('{itemName}', {quantity})";
+                db.InsertData(insertQuery);
+
+                // Close connection
+                db.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log it or throw a custom exception)
+                throw new Exception($"Error adding item to database: {ex.Message}");
+            }
         }
 
         public void RemoveMenuItem(MenuItem menuItem)

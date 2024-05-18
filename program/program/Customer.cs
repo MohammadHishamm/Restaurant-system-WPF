@@ -35,7 +35,7 @@ namespace program
             Order order = new Order(orderId, "Pending");
             foreach (var item in menuItems)
             {
-                order.AddMenuItem(item);
+               // order.AddMenuItem(item);
             }
             waiter.CreateOrder(order);
 
