@@ -1,4 +1,5 @@
-﻿using System;
+﻿using program;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,12 @@ namespace SideBar_Nav.Pages
         {
             InitializeComponent();
         }
+
+        private void AddNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewOrder addItemWindow = new AddNewOrder();
+            addItemWindow.ShowDialog();
+        }
+
     }
 }

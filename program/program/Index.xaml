@@ -18,7 +18,7 @@
 
         <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar" Margin="0,50,0,50"  BorderThickness="0">
 
-            <local:NavButton Navlink="Page1.xaml" Margin="0,20,0,10" Padding="6" Text="Page 1"/>
+            <local:NavButton Navlink="Page1.xaml" Margin="0,20,0,10" Padding="6" Text="Order"/>
             <local:NavButton Navlink="Inventorypage.xaml" Margin="0,20,0,10" Text="Inventory"/>
             <local:NavButton Navlink="Page3.xaml" Margin="0,20,0,10" Padding="6" Text="Page 3"/>
             <local:NavButton Navlink="Page4.xaml" Margin="0,20,0,10" Padding="6" Text="Page 4"/>
