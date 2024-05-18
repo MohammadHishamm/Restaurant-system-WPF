@@ -20,45 +20,45 @@ namespace program
 
         }
 
-        public void AddItemToInventory(string itemName, int quantity)
-        {
-            inventory.AddItem(itemName, quantity);
-            Console.WriteLine($"{quantity} {itemName}(s) added to inventory.");
-        }
+        //public void AddItemToInventory(string itemName, int quantity)
+        //{
+        //    inventory.AddItemToDatabase(itemName, quantity);
+        //    Console.WriteLine($"{quantity} {itemName}(s) added to inventory.");
+        //}
 
-        public void RemoveItemFromInventory(string itemName, int quantity)
-        {
-            inventory.RemoveItem(itemName, quantity);
-        }
+        //public void RemoveItemFromInventory(string itemName, int quantity)
+        //{
+        //    inventory.RemoveItem(itemName, quantity);
+        //}
 
-        public void ViewInventory()
-        {
-            inventory.ViewInventoryItems();
-        }
+        //public void ViewInventory()
+        //{
+        //    inventory.GetInventoryItemsFromDatabase();
+        //}
 
-        public void AddMenuItemToMenu(Menu menu, int menuItemID, string title, string description, decimal price)
-        {
-            if (!menus.Contains(menu))
-            {
-                menus.Add(menu);
-            }
+        //public void AddMenuItemToMenu(Menu menu, int menuItemID, string title, string description, decimal price)
+        //{
+        //    if (!menus.Contains(menu))
+        //    {
+        //        menus.Add(menu);
+        //    }
 
-            menu.AddMenuItem(menuItemID, title, description, price);
-            Console.WriteLine($"Added {title} to menu {menu.MenuID}.");
-        }
+        //    menu.AddMenuItem(menuItemID, title, description, price);
+        //    Console.WriteLine($"Added {title} to menu {menu.MenuID}.");
+        //}
 
-        public void RemoveMenuItemFromMenu(Menu menu, MenuItem menuItem)
-        {
-            menu.RemoveMenuItem(menuItem);
-            Console.WriteLine($"Removed {menuItem.Title} from menu {menu.MenuID}.");
-        }
+        //public void RemoveMenuItemFromMenu(Menu menu, MenuItem menuItem)
+        //{
+        //    menu.RemoveMenuItem(menuItem);
+        //    Console.WriteLine($"Removed {menuItem.Title} from menu {menu.MenuID}.");
+        //}
 
-        public void ViewMenus()
-        {
-            foreach (var menu in menus)
-            {
-                menu.ViewMenu();
-            }
-        }
+        //public void ViewMenus()
+        //{
+        //    foreach (var menu in menus)
+        //    {
+        //        menu.ViewMenu();
+        //    }
+        //}
     }
 }

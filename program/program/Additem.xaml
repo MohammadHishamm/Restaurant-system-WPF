@@ -1,0 +1,69 @@
+﻿<Window x:Class="program.Additem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:program"
+        mc:Ignorable="d"
+        Title="Additem" 
+          Height="500" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Border Background="LightGray" BorderThickness="3">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Gray" Offset="0"/>
+                <GradientStop Color="DarkGray" Offset="0.75"/>
+                <GradientStop Color="Black" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Width="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <TextBlock Text="Name" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
+                    <TextBox x:Name="NameTextBox" Grid.Row="0" FontSize="13" FontFamily="Arial" Foreground="Black"
+                              Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,2" Height="28"/>
+                </StackPanel>
+
+                
+
+                
+
+                <StackPanel Orientation="Vertical" Grid.Row="1">
+                    <TextBlock Text="Category" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
+                    <ComboBox x:Name="CategoryComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2">
+                    <TextBlock Text="Quantity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
+                    <TextBox x:Name="QuantityTextBox" Grid.Row="0" FontSize="13" FontFamily="Arial" Foreground="Black"
+                              Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,2" Height="28"/>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Add"   Click="AddButton_Click" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40"/>
+
+                <Button Grid.Column="1" Content="Cancel" Click="CancelButton_Click" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -17,7 +17,7 @@ namespace program
   
         private void NavigateToSigninPage()
         {
-            MainFrame.Navigate(new Signin());
+            MainFrame.Navigate(new Index());
         }
 
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +10,12 @@ namespace program
 {
     internal class Inventory
     {
-        private Dictionary<string, int> inventoryItems;
+        private readonly DBconfig db;
+        public Dictionary<string, int> inventoryItems;
 
         public Inventory()
         {
+            db = DBconfig.Instance;
             inventoryItems = new Dictionary<string, int>();
         }
 
@@ -29,15 +33,27 @@ namespace program
             return inventoryItems.ContainsKey(itemName);
         }
 
-        public void AddItem(string itemName, int quantity)
+        public void AddItemToDatabase(string itemName, int quantity)
         {
-            if (inventoryItems.ContainsKey(itemName))
+            try
             {
-                inventoryItems[itemName] += quantity;
+                // Create an instance of the DBconfig class
+                DBconfig db = DBconfig.Instance;
+
+                // Open connection
+                db.OpenConnection();
+
+                // Insert item into the database
+                string insertQuery = $"INSERT INTO Inventory (Name, Quantity) VALUES ('{itemName}', {quantity})";
+                db.InsertData(insertQuery);
+
+                // Close connection
+                db.CloseConnection();
             }
-            else
+            catch (Exception ex)
             {
-                inventoryItems[itemName] = quantity;
+                // Handle the exception (e.g., log it or throw a custom exception)
+                throw new Exception($"Error adding item to database: {ex.Message}");
             }
         }
 
@@ -61,18 +77,55 @@ namespace program
             }
         }
 
-        public Dictionary<string, int> GetInventoryItems()
+        public void LoadItemsFromDatabase()
         {
-            return inventoryItems;
-        }
-
-        public void ViewInventoryItems()
-        {
-            Console.WriteLine("Inventory Items:");
-            foreach (var item in GetInventoryItems())
+            try
             {
-                Console.WriteLine($"{item.Key}: {item.Value}");
+                // Open connection
+                db.OpenConnection();
+
+                // Retrieve items from the database
+                string query = "SELECT Name, Quantity FROM Inventory";
+                using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader.GetString(0);
+                            int quantity = reader.GetInt32(1);
+
+                            // Add or update inventory item in the dictionary
+                            if (inventoryItems.ContainsKey(name))
+                            {
+                                inventoryItems[name] = quantity;
+                            }
+                            else
+                            {
+                                inventoryItems.Add(name, quantity);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                throw new Exception($"Error loading items from database: {ex.Message}");
+            }
+            finally
+            {
+                // Close connection
+                db.CloseConnection();
             }
         }
+
+
+
+
     }
+
+
+
+       
 }
