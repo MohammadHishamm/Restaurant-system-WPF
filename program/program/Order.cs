@@ -54,55 +54,55 @@ namespace program
             }
         }
 
-        public void LoadItemsFromDatabase()
-        {
-            try
-            {
-                DBconfig db = DBconfig.Instance;
-                // Open connection
-                db.OpenConnection();
+        //public void LoadItemsFromDatabase()
+        //{
+        //    try
+        //    {
+        //        DBconfig db = DBconfig.Instance;
+        //        // Open connection
+        //        db.OpenConnection();
 
-                // Retrieve items from the database
-                string query = "SELECT Name, Quantity, Table FROM Order";
-                using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string name = reader.GetString(0);
-                            int quantity = reader.GetInt32(1);
-                            int table = reader.GetInt32(2);
+        //        // Retrieve items from the database
+        //        string query = "SELECT Name, Quantity, Table FROM Order";
+        //        using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
+        //        {
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    string name = reader.GetString(0);
+        //                    int quantity = reader.GetInt32(1);
+        //                    int table = reader.GetInt32(2);
 
-                            var item = MenuItems.FirstOrDefault(m => m.MenuItemID == menuItemID);
-                            if (item != null)
-                            {
-                                // Update existing item's price
-                                item.UpdatePrice(price);
-                                // Optionally, you can also update other fields if needed
-                                item.Title = title;
-                                item.Description = description;
-                            }
-                            else
-                            {
-                                // Add new item to the list
-                                MenuItems.Add(new MenuItem(menuItemID, title, description, price));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exception
-                throw new Exception($"Error loading items from database: {ex.Message}");
-            }
-            finally
-            {
-                // Close connection
-                db.CloseConnection();
-            }
-        }
+        //                    var item = MenuItems.FirstOrDefault(m => m.MenuItemID == menuItemID);
+        //                    if (item != null)
+        //                    {
+        //                        // Update existing item's price
+        //                        item.UpdatePrice(price);
+        //                        // Optionally, you can also update other fields if needed
+        //                        item.Title = title;
+        //                        item.Description = description;
+        //                    }
+        //                    else
+        //                    {
+        //                        // Add new item to the list
+        //                        MenuItems.Add(new MenuItem(menuItemID, title, description, price));
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exception
+        //        throw new Exception($"Error loading items from database: {ex.Message}");
+        //    }
+        //    finally
+        //    {
+        //        // Close connection
+        //        db.CloseConnection();
+        //    }
+        //}
 
         public void RemoveMenuItem(MenuItem menuItem)
         {
