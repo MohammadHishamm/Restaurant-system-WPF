@@ -9,39 +9,42 @@ using System.Windows.Controls;
 
 namespace program
 {
-    internal class Order 
+    internal class Order
     {
         public int OrderID { get; private set; }
         public string Status { get; set; }
-        public List<MenuItem> MenuItems { get; private set; }
+        public MenuItem MenuItem { get; private set; }
+        public int TableID { get; private set; }
         private List<IObserver> observers;
-
-        public Order(int orderID, string status)
+        private readonly DBconfig db;
+        
+        public Order(int orderID, string status, int tableID)
         {
+            db = DBconfig.Instance;
             OrderID = orderID;
             Status = status;
-            MenuItems = new List<MenuItem>();
-            observers = new List<IObserver>(); 
+    
+            TableID = tableID;
+            observers = new List<IObserver>();
         }
 
         public Order()
         {
-            MenuItems = new List<MenuItem>();
-            observers = new List<IObserver>(); ;
+            db = DBconfig.Instance;
         }
 
-        public void AddItemToDatabase(string itemName, int quantity, int table)
+        public void AddItemToDatabase(int ID, String status, int table)
         {
             try
             {
                 // Create an instance of the DBconfig class
-                DBconfig db = DBconfig.Instance;
+               
 
                 // Open connection
                 db.OpenConnection();
 
                 // Insert item into the database
-                string insertQuery = $"INSERT INTO Order (Name, Quantity) VALUES ('{itemName}', {quantity} , {table})";
+                string insertQuery = $"INSERT INTO Order (ID, Status, TableID) VALUES ('{ID}', {status} , {table})";
                 db.InsertData(insertQuery);
 
                 // Close connection
@@ -54,77 +57,79 @@ namespace program
             }
         }
 
-        //public void LoadItemsFromDatabase()
+
+
+
+
+
+
+        public void LoadItemsFromDatabase()
+        {
+            try
+            {
+
+                // Open connection
+                db.OpenConnection();
+
+                // Retrieve items from the database
+                string query = "SELECT Name, Quantity FROM Inventory";
+                using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string status = reader.GetString(1);
+                            int table = reader.GetInt32(2);
+
+                            OrderID = id;
+                            Status = status;
+                            TableID = table;
+
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                throw new Exception($"Error loading items from database: {ex.Message}");
+            }
+            finally
+            {
+                // Close connection
+                db.CloseConnection();
+            }
+        }
+
+
+
+
+
+
+        //public void RemoveMenuItem(MenuItem menuItem)
         //{
-        //    try
+        //    if (MenuItems.Contains(menuItem))
         //    {
-        //        DBconfig db = DBconfig.Instance;
-        //        // Open connection
-        //        db.OpenConnection();
-
-        //        // Retrieve items from the database
-        //        string query = "SELECT Name, Quantity, Table FROM Order";
-        //        using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
-        //        {
-        //            using (SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    string name = reader.GetString(0);
-        //                    int quantity = reader.GetInt32(1);
-        //                    int table = reader.GetInt32(2);
-
-        //                    var item = MenuItems.FirstOrDefault(m => m.MenuItemID == menuItemID);
-        //                    if (item != null)
-        //                    {
-        //                        // Update existing item's price
-        //                        item.UpdatePrice(price);
-        //                        // Optionally, you can also update other fields if needed
-        //                        item.Title = title;
-        //                        item.Description = description;
-        //                    }
-        //                    else
-        //                    {
-        //                        // Add new item to the list
-        //                        MenuItems.Add(new MenuItem(menuItemID, title, description, price));
-        //                    }
-        //                }
-        //            }
-        //        }
+        //        MenuItems.Remove(menuItem);
+        //        Console.WriteLine($"Removed '{menuItem.Title}' from order {OrderID}.");
         //    }
-        //    catch (Exception ex)
+        //    else
         //    {
-        //        // Handle exception
-        //        throw new Exception($"Error loading items from database: {ex.Message}");
-        //    }
-        //    finally
-        //    {
-        //        // Close connection
-        //        db.CloseConnection();
+        //        Console.WriteLine($"Item '{menuItem.Title}' is not in order {OrderID}. Cannot remove.");
         //    }
         //}
 
-        public void RemoveMenuItem(MenuItem menuItem)
-        {
-            if (MenuItems.Contains(menuItem))
-            {
-                MenuItems.Remove(menuItem);
-                Console.WriteLine($"Removed '{menuItem.Title}' from order {OrderID}.");
-            }
-            else
-            {
-                Console.WriteLine($"Item '{menuItem.Title}' is not in order {OrderID}. Cannot remove.");
-            }
-        }
-
-        public void ViewOrderDetails()
-        {
-            Console.WriteLine($"Order Details for Order {OrderID}:");
-            foreach (var item in MenuItems)
-            {
-                Console.WriteLine($"ID: {item.MenuItemID}, Title: {item.Title}, Description: {item.Description}, Price: {item.Price}");
-            }
-        }
+        //public void ViewOrderDetails()
+        //{
+        //    Console.WriteLine($"Order Details for Order {OrderID}:");
+        //    foreach (var item in MenuItems)
+        //    {
+        //        Console.WriteLine($"ID: {item.MenuItemID}, Title: {item.Title}, Description: {item.Description}, Price: {item.Price}");
+        //    }
+        //}
 
         public void Attach(IObserver observer)
         {
@@ -155,12 +160,7 @@ namespace program
 
 
 
-
-
-
-
-
-
-
     }
 }
+
+

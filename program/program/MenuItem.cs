@@ -21,6 +21,8 @@
                 Description = description;
                 Price = price;
             }
+
+           public MenuItem() { }
             public void UpdatePrice(decimal newPrice)
             {
                 Price = newPrice;

@@ -21,9 +21,12 @@ namespace SideBar_Nav.Pages
     /// </summary>
     public partial class Page1 : Page
     {
+        private Order order;
         public Page1()
         {
             InitializeComponent();
+            order = new Order();
+            LoadDataGrid();
         }
 
         private void AddNewOrder_Click(object sender, RoutedEventArgs e)
@@ -31,6 +34,25 @@ namespace SideBar_Nav.Pages
             AddNewOrder addItemWindow = new AddNewOrder();
             addItemWindow.ShowDialog();
         }
+
+        private void LoadDataGrid()
+        {
+            try
+            {
+                // Load items from the database
+                order.LoadItemsFromDatabase();
+               
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading items: {ex.Message}");
+            }
+        }
+
+
+
 
     }
 }
