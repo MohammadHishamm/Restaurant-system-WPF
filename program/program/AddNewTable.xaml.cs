@@ -34,19 +34,9 @@ namespace program
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             
-            string maxcapacity = NameTextBox.Text;
+            int maxcapacity = int.Parse(NameTextBox.Text);
 
-            if ( string.IsNullOrWhiteSpace(maxcapacity))
-            {
-                MessageBox.Show("Please fill in all fields.");
-                return;
-            }
-
-            if (!int.TryParse(maxcapacity, out int MaxCapacity))
-            {
-                MessageBox.Show("Capacity must be a valid integer.");
-                return;
-            }
+           
 
             try
             {
@@ -54,7 +44,7 @@ namespace program
                 Table table = new Table();
 
                 // Add the item using the Inventory class method
-                table.AddItemToDatabase(5,MaxCapacity);
+                table.AddItemToDatabase(5, maxcapacity);
 
                 MessageBox.Show("Item added successfully.");
 

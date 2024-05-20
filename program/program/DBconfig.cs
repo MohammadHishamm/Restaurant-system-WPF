@@ -15,7 +15,7 @@ namespace program
 
         public DBconfig()
         {
-            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\PC\Documents\Res.mdf;Integrated Security=True;Connect Timeout=30"; conn = new SqlConnection(connectionString);
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Mark\Documents\restaurant.mdf;Integrated Security=True;Connect Timeout=30"; conn = new SqlConnection(connectionString);
         }
 
         public SqlConnection GetConn()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,19 @@ namespace program
         public int MaxCapacity { get; private set; }
         public List<Reservation> Reservations { get; set; }
 
+        private readonly DBconfig db;
+        public Dictionary<string, int> inventoryItems;
+
+
         public Table()
         {
-
+             db = DBconfig.Instance;
         }
-        public Table(int tableID, string status, int maxCapacity)
+        public Table(int tableID, int maxCapacity)
         {
+             db = DBconfig.Instance;
             TableID = tableID;
-            Status = status;
+            
             MaxCapacity = maxCapacity;
             Reservations = new List<Reservation>();
         }
@@ -61,7 +67,7 @@ namespace program
                 db.OpenConnection();
 
                 // Insert item into the database
-                string insertQuery = $"INSERT INTO [Tables] (id,maxcapacity) VALUES ({TableID},{maxCapacity})";
+                string insertQuery = $"INSERT INTO [Tables] (id, maxcapacity) VALUES ({TableID}, {maxCapacity})";
                 db.InsertData(insertQuery);
 
                 // Close connection
@@ -73,5 +79,47 @@ namespace program
                 throw new Exception($"Error adding item to database: {ex.Message}");
             }
         }
+
+        public List<Table> LoadItemsFromDatabase()
+        {
+            List<Table> tables = new List<Table>();
+
+            try
+            {
+                // Open connection
+                db.OpenConnection();
+
+                // Retrieve items from the database
+                string query = "SELECT id, maxcapacity FROM [Tables]";
+                using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            int max = reader.GetInt32(1);
+                            
+
+                            Table table = new Table(id,max);
+                            tables.Add(table);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                throw new Exception($"Error loading items from database: {ex.Message}");
+            }
+            finally
+            {
+                // Close connection
+                db.CloseConnection();
+            }
+
+            return tables;
+        }
+
     }
 }

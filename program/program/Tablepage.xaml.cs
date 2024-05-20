@@ -22,9 +22,12 @@ namespace program
 
     public partial class Tablepage : Page
     {
+        private Table table;
         public Tablepage()
         {
             InitializeComponent();
+            table = new Table();
+            LoadDataGrid();
         }
         private void AddNewItem_Click(object sender, RoutedEventArgs e)
         {
@@ -32,6 +35,18 @@ namespace program
             addItemWindow.ShowDialog();
         }
 
+        private void LoadDataGrid()
+        {
+            try
+            {
+                List<Table> tables = table.LoadItemsFromDatabase();
+                UsersDataGrid.ItemsSource = tables;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading items: {ex.Message}");
+            }
+        }
 
     }
 

@@ -52,8 +52,8 @@
                   BorderThickness="1" ItemsSource="{Binding Tables}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
                   HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
-                        <DataGridTextColumn Header="maxcapacity" Binding="{Binding Seats}" Width="*"/>
+                        <DataGridTextColumn Header="Id" Binding="{Binding TableID}" Width="*"/>
+                        <DataGridTextColumn Header="maxcapacity" Binding="{Binding MaxCapacity}" Width="*"/>
                         <DataGridTemplateColumn Header="#" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
