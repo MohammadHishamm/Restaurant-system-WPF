@@ -5,13 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SideBar_Nav.Pages"
       mc:Ignorable="d" 
-     MinHeight="600" MinWidth="1044"
-      Title="Page1" Height="800" Background="white">
+      MinHeight="600" MinWidth="1044"
+      Title="Page1" Height="800">
 
-
-
-
-    <Border>
+    <Border Background="{DynamicResource Background}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
@@ -25,25 +22,46 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
+
                     <Button x:Name="AddNewItem" Grid.Column="0" Content="Add Order" HorizontalAlignment="Left"
-                            FontSize="12" Margin="50,10,0,0" Height="40" Width="120" Command="" VerticalAlignment="Top" Click="AddNewOrder_Click"/>
+        FontSize="12" Margin="50,10,0,0" Height="40" Width="120" Command="" VerticalAlignment="Top" Click="AddNewOrder_Click">
+                        
+                    <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{DynamicResource Button}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MouseOverButton}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
 
-                    <ComboBox x:Name="Users" Grid.Column="0" Margin="190,0,0,0" Height="40" Width="120" HorizontalAlignment="Left"
-                              FontSize="12" HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center"  />
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
-                    <ComboBox x:Name="Month" Grid.Column="1" Margin="0,0,50,0" Height="40" Width="120" HorizontalAlignment="Right"
-                              FontSize="12" HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center" />
-                    <ComboBox x:Name="Year" Grid.Column="1" Margin="0,0,190,0" Height="40" Width="120" HorizontalAlignment="Right"
-                              FontSize="12" HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center"  />
+                    <ComboBox x:Name="Users" Grid.Column="0" Margin="190,0,0,0" Height="40" Width="120" HorizontalAlignment="Left" 
+                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
+                              VerticalContentAlignment="Center" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Style="{DynamicResource ComboBox}"/>
 
+                    <ComboBox x:Name="Month" Grid.Column="1" Margin="0,0,50,0" Height="40" Width="120" HorizontalAlignment="Right" 
+                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
+                              VerticalContentAlignment="Center" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" Style="{DynamicResource ComboBox}"/>
+
+                    <ComboBox x:Name="Year" Grid.Column="1" Margin="0,0,190,0" Height="40" Width="120" HorizontalAlignment="Right" 
+                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
+                              VerticalContentAlignment="Center" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth}" Style="{DynamicResource ComboBox}"/>
                 </Grid>
             </Border>
 
             <Border Grid.Row="1">
-                <DataGrid x:Name="UsersDataGrid" Background="Transparent" MinWidth="951" HorizontalAlignment="Stretch" Margin="50,5,50,35" Height="auto" Width="auto"
+                <DataGrid x:Name="UsersDataGrid" Background="Transparent" MinWidth="951" HorizontalAlignment="Stretch" Margin="50,5,50,35" Height="auto" Width="auto" 
                           BorderThickness="1" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
                           HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
                     <DataGrid.Columns>

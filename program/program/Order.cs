@@ -21,7 +21,7 @@ namespace program
             OrderID = orderID;
             Status = status;
             MenuItems = new List<MenuItem>();
-            observers = new List<IObserver>(); ;
+            observers = new List<IObserver>(); 
         }
 
         public Order()
