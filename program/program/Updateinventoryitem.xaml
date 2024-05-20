@@ -1,0 +1,91 @@
+﻿<Window x:Class="program.Updateinventoryitem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+  Height="500" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="Updateinventoryitem" >
+    <Border Background="{DynamicResource Background}" BorderThickness="3" Opacity="0.95">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{DynamicResource Gradient1}" Offset="0"/>
+                <GradientStop Color="{DynamicResource Gradient2}" Offset="0.75"/>
+                <GradientStop Color="{DynamicResource Gradient3}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Width="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <TextBlock Text="Quantity" Foreground="{DynamicResource BackgroundText}" FontSize="12" FontFamily="{DynamicResource MyFont}" 
+                   Margin="0,15,0,5"/>
+                    <TextBox x:Name="QuantityTextBox" Grid.Row="0" FontSize="13" FontFamily="{DynamicResource MyFont}" Foreground="{DynamicResource BackgroundText}" 
+                 Background="Transparent" BorderBrush="{DynamicResource BackgroundText}" BorderThickness="0,0,0,2" Height="28" 
+                 VerticalContentAlignment="Center"
+                 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Update" Foreground="Black" FontSize="12" FontFamily="{DynamicResource MyFont}"
+                        Width="100" Height="40" Click="UpdateButton_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{DynamicResource Button}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource MouseOverButton}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Column="1" Content="Cancel" Foreground="Black" FontSize="12" FontFamily="{DynamicResource MyFont}"
+                        Width="100" Height="40" Click="CancelButton_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{DynamicResource Button}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource MouseOverButton}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

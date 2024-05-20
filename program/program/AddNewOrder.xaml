@@ -64,22 +64,10 @@
                           BorderThickness="1" ItemsSource="{Binding OrderHasItems}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
                           HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Item.Name}" Width="60"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Item.Price}" Width="60"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
-                        <DataGridTemplateColumn Header="#" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto">
-                                        <Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
-                                                BorderThickness="0" Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                CommandParameter="{Binding}">
-                                            <Image Source="../Resources/Images/delete.png"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
+                      
                     </DataGrid.Columns>
 
                     <DataGrid.Resources>
