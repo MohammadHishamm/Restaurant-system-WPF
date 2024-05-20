@@ -36,9 +36,14 @@
 
                 <StackPanel Orientation="Vertical" Grid.Row="1">
                     <TextBlock Text="Table" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
-                    <ComboBox x:Name="TablesComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center" 
-                              ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable}"/>
+                    <ComboBox x:Name="TablesComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                    </ComboBox>
+
                 </StackPanel>
+
 
                 <StackPanel Orientation="Vertical" Grid.Row="2">
                     <TextBlock Text="Quantity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>

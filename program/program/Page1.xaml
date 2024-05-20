@@ -24,9 +24,8 @@
 
 
                     <Button x:Name="AddNewItem" Grid.Column="0" Content="Add Order" HorizontalAlignment="Left"
-        FontSize="12" Margin="50,10,0,0" Height="40" Width="120" Command="" VerticalAlignment="Top" Click="AddNewOrder_Click">
-                        
-                    <Button.Style>
+                            FontSize="12" Margin="50,10,0,0" Height="40" Width="120" Command="" VerticalAlignment="Top" Click="AddNewOrder_Click">
+                        <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{DynamicResource Button}"/>
                                 <Style.Triggers>
@@ -64,10 +63,47 @@
                 <DataGrid x:Name="UsersDataGrid" Background="Transparent" MinWidth="951" HorizontalAlignment="Stretch" Margin="50,5,50,35" Height="auto" Width="auto" 
                           BorderThickness="1" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
                           HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGrid">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="FontFamily" Value="{DynamicResource MyFont}"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Background" Value="{DynamicResource TableBackground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource BackgroundText}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="FontFamily" Value="{DynamicResource MyFont}"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Background" Value="{DynamicResource TableBackground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource BackgroundText}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{DynamicResource TableBackground}"/>
+                            <Setter Property="FontFamily" Value="{DynamicResource MyFont}"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Foreground" Value="{DynamicResource BackgroundText}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="IsHitTestVisible" Value="True"/>
+                            <Setter Property="Focusable" Value="True"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
-                        <DataGridTextColumn Header="Created" Binding="{Binding Created}" Width="*"/>
-                        <DataGridTextColumn Header="Table" Binding="{Binding TableId}" Width="*"/>
+                        <DataGridTextColumn Header="Id" Binding="{Binding OrderID}" Width="*"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                        <DataGridTextColumn Header="Table" Binding="{Binding TableID}" Width="*"/>
                         <DataGridTemplateColumn Header="#" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

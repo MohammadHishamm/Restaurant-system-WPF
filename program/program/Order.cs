@@ -11,15 +11,16 @@ namespace program
 {
     internal class Order
     {
-        public string OrderID { get; private set; }
+        public int OrderID { get; private set; }
         public string Status { get; set; }
         public MenuItem MenuItem { get; private set; }
         public int TableID { get; private set; }
         private List<IObserver> observers;
         private readonly DBconfig db;
         
-        public Order(string orderID, string status, int tableID)
+        public Order(int orderID, string status, int tableID)
         {
+            db = DBconfig.Instance;
             db = DBconfig.Instance;
             OrderID = orderID;
             Status = status;
@@ -37,22 +38,18 @@ namespace program
         {
             try
             {
-                // Create an instance of the DBconfig class
-               
-
-                // Open connection
+          
                 db.OpenConnection();
 
-                // Insert item into the database
+          
                 string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID) VALUES ({ID}, '{status}' , {table})";
                 db.InsertData(insertQuery);
 
-                // Close connection
                 db.CloseConnection();
             }
             catch (Exception ex)
             {
-                // Handle the exception (e.g., log it or throw a custom exception)
+             
                 throw new Exception($"Error adding item to database: {ex.Message}");
             }
         }
@@ -69,10 +66,9 @@ namespace program
 
             try
             {
-                // Open connection
+                
                 db.OpenConnection();
 
-                // Retrieve items from the database
                 string query = "SELECT ID, Status, TableID FROM [Order]";
                 using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
                 {
@@ -80,7 +76,7 @@ namespace program
                     {
                         while (reader.Read())
                         {
-                            string id = reader.GetString(0);
+                            int id = reader.GetInt32(0);
                             string status = reader.GetString(1);
                             int table = reader.GetInt32(2);
 
@@ -92,12 +88,11 @@ namespace program
             }
             catch (Exception ex)
             {
-                // Handle exception
                 throw new Exception($"Error loading items from database: {ex.Message}");
             }
             finally
             {
-                // Close connection
+                
                 db.CloseConnection();
             }
 
@@ -108,28 +103,6 @@ namespace program
 
 
 
-
-        //public void RemoveMenuItem(MenuItem menuItem)
-        //{
-        //    if (MenuItems.Contains(menuItem))
-        //    {
-        //        MenuItems.Remove(menuItem);
-        //        Console.WriteLine($"Removed '{menuItem.Title}' from order {OrderID}.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine($"Item '{menuItem.Title}' is not in order {OrderID}. Cannot remove.");
-        //    }
-        //}
-
-        //public void ViewOrderDetails()
-        //{
-        //    Console.WriteLine($"Order Details for Order {OrderID}:");
-        //    foreach (var item in MenuItems)
-        //    {
-        //        Console.WriteLine($"ID: {item.MenuItemID}, Title: {item.Title}, Description: {item.Description}, Price: {item.Price}");
-        //    }
-        //}
 
         public void Attach(IObserver observer)
         {
