@@ -18,11 +18,22 @@ namespace program
     /// <summary>
     /// Interaction logic for Tablepage.xaml
     /// </summary>
+    /// 
+
     public partial class Tablepage : Page
     {
         public Tablepage()
         {
             InitializeComponent();
         }
+        private void AddNewItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewTable addItemWindow = new AddNewTable();
+            addItemWindow.ShowDialog();
+        }
+
+
     }
+
+
 }

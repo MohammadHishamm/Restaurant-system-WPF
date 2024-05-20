@@ -23,7 +23,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button x:Name="AddNewUser" Grid.Column="0" Content="Add New Table" Foreground="{DynamicResource Text}" HorizontalAlignment="Left"
-                    FontSize="12" FontFamily="{DynamicResource MyFont}" Margin="50,0,0,0" Height="40" Width="120" Command="{Binding AddTableCommand}">
+                    FontSize="12" FontFamily="{DynamicResource MyFont}" Margin="50,0,0,0" Height="40" Width="120"  Click="AddNewItem_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{DynamicResource Button}"/>

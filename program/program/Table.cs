@@ -13,6 +13,10 @@ namespace program
         public int MaxCapacity { get; private set; }
         public List<Reservation> Reservations { get; set; }
 
+        public Table()
+        {
+
+        }
         public Table(int tableID, string status, int maxCapacity)
         {
             TableID = tableID;
@@ -45,6 +49,29 @@ namespace program
         {
             Reservations.Remove(reservation);
             Console.WriteLine($"Reservation {reservation.ReservationID} removed from table {TableID}.");
+        }
+        public void AddItemToDatabase(int TableID, int maxCapacity)
+        {
+            try
+            {
+                // Create an instance of the DBconfig class
+                DBconfig db = DBconfig.Instance;
+
+                // Open connection
+                db.OpenConnection();
+
+                // Insert item into the database
+                string insertQuery = $"INSERT INTO [Tables] (id,maxcapacity) VALUES ({TableID},{maxCapacity})";
+                db.InsertData(insertQuery);
+
+                // Close connection
+                db.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log it or throw a custom exception)
+                throw new Exception($"Error adding item to database: {ex.Message}");
+            }
         }
     }
 }
