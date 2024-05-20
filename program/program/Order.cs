@@ -44,7 +44,7 @@ namespace program
                 db.OpenConnection();
 
                 // Insert item into the database
-                string insertQuery = $"INSERT INTO Order (ID, Status, TableID) VALUES ('{ID}', {status} , {table})";
+                string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID) VALUES ({ID}, '{status}' , {table})";
                 db.InsertData(insertQuery);
 
                 // Close connection
@@ -63,16 +63,17 @@ namespace program
 
 
 
-        public void LoadItemsFromDatabase()
+        public List<Order> LoadItemsFromDatabase()
         {
+            List<Order> orders = new List<Order>();
+
             try
             {
-
                 // Open connection
                 db.OpenConnection();
 
                 // Retrieve items from the database
-                string query = "SELECT Name, Quantity FROM Inventory";
+                string query = "SELECT ID, Status, TableID FROM [Order]";
                 using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -83,11 +84,8 @@ namespace program
                             string status = reader.GetString(1);
                             int table = reader.GetInt32(2);
 
-                            OrderID = id;
-                            Status = status;
-                            TableID = table;
-
-
+                            Order order = new Order(id, status, table);
+                            orders.Add(order);
                         }
                     }
                 }
@@ -102,6 +100,8 @@ namespace program
                 // Close connection
                 db.CloseConnection();
             }
+
+            return orders;
         }
 
 

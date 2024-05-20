@@ -41,7 +41,7 @@ namespace SideBar_Nav.Pages
             {
                 // Load items from the database
                 order.LoadItemsFromDatabase();
-               
+                UsersDataGrid.ItemsSource = new List<Order>() { order };
 
 
             }

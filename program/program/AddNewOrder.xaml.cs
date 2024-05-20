@@ -57,8 +57,8 @@ namespace program
 
         private void AddButton2_Click(object sender, RoutedEventArgs e)
         {
-            string name = ItemsComboBox.Text;
-            string quantityStr = QuantityTextBox.Text;
+            //string name = ItemsComboBox.Text;
+            //string quantityStr = QuantityTextBox.Text;
             //int tableID = int.Parse(TablesComboBox.Text);
 
             //if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(quantityStr))
