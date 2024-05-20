@@ -11,14 +11,14 @@ namespace program
 {
     internal class Order
     {
-        public int OrderID { get; private set; }
+        public string OrderID { get; private set; }
         public string Status { get; set; }
         public MenuItem MenuItem { get; private set; }
         public int TableID { get; private set; }
         private List<IObserver> observers;
         private readonly DBconfig db;
         
-        public Order(int orderID, string status, int tableID)
+        public Order(string orderID, string status, int tableID)
         {
             db = DBconfig.Instance;
             OrderID = orderID;
@@ -80,7 +80,7 @@ namespace program
                     {
                         while (reader.Read())
                         {
-                            int id = reader.GetInt32(0);
+                            string id = reader.GetString(0);
                             string status = reader.GetString(1);
                             int table = reader.GetInt32(2);
 
