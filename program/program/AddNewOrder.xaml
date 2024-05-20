@@ -36,9 +36,14 @@
 
                 <StackPanel Orientation="Vertical" Grid.Row="1">
                     <TextBlock Text="Table" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
-                    <ComboBox x:Name="TablesComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center" 
-                              ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable}"/>
+                    <ComboBox x:Name="TablesComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                    </ComboBox>
+
                 </StackPanel>
+
 
                 <StackPanel Orientation="Vertical" Grid.Row="2">
                     <TextBlock Text="Quantity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
@@ -64,22 +69,10 @@
                           BorderThickness="1" ItemsSource="{Binding OrderHasItems}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectedIndex="-1"
                           HeadersVisibility="Column" SelectionUnit="FullRow" BorderBrush="Transparent">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Item.Name}" Width="60"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Item.Price}" Width="60"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
-                        <DataGridTemplateColumn Header="#" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto">
-                                        <Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
-                                                BorderThickness="0" Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                CommandParameter="{Binding}">
-                                            <Image Source="../Resources/Images/delete.png"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
+                      
                     </DataGrid.Columns>
 
                     <DataGrid.Resources>
@@ -136,7 +129,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Add" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" Command="{Binding AddCommand}">
+                <Button Click="AddButton2_Click" Grid.Column="0" Content="Add" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" Command="{Binding AddCommand}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="LightBlue"/>
@@ -157,7 +150,7 @@
                     </Button.Template>
                 </Button>
 
-                <Button Grid.Column="1" Content="Cancel" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" Command="{Binding CancelCommand}">
+                <Button   Click="CancelButton_Click"  Grid.Column="1" Content="Cancel" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" Command="{Binding CancelCommand}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="LightBlue"/>

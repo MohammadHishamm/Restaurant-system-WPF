@@ -31,6 +31,7 @@ namespace program
             Reservations = new List<Reservation>();
         }
 
+        public Table() { }  
         public void AddReservation(Reservation reservation)
         {
             Reservations.Add(reservation);

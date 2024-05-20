@@ -55,6 +55,41 @@ namespace program
             }
         }
 
+        private void AddButton2_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+             
+                if (TablesComboBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a table.");
+                    return;
+                }
+
+            
+                int tableID = Convert.ToInt32(((ComboBoxItem)TablesComboBox.SelectedItem).Content);
+
+                Order order = new Order();
+
+               
+                order.AddItemToDatabase(5, "Pending", tableID);
+
+                MessageBox.Show("Item added successfully.");
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the window
+            this.Close();
+        }
+
 
     }
 }

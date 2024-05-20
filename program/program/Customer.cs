@@ -11,7 +11,7 @@ namespace program
         public string Name { get; set; }
         public string ContactNumber { get; set; }
         public int CustomerID { get; private set; }
-
+       
 
 
         public Customer(string name, string contactNumber, int customerID)
@@ -32,12 +32,12 @@ namespace program
         {
 
             int orderId = GenerateOrderId();
-            Order order = new Order(orderId, "Pending");
+            //Order order = new Order(orderId, "Pending");
             foreach (var item in menuItems)
             {
                // order.AddMenuItem(item);
             }
-            waiter.CreateOrder(order);
+            //waiter.CreateOrder(order);
 
             Console.WriteLine($"Order placed successfully. Order ID: {orderId}");
         }
