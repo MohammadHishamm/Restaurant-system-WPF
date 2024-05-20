@@ -63,6 +63,33 @@
                         <DataGridTextColumn  Header="Name" Binding="{Binding Key}" Width="*" FontSize="16"/>
 
                         <DataGridTextColumn Header="Quantity" Binding="{Binding Value}" Width="*" FontSize="16"/>
+                        <DataGridTemplateColumn Header="#" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button x:Name="EditItem" Click="editItem_Click"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Margin="0,0,5,0"
+                        Command="{Binding DataContext.EditItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                        CommandParameter="{Binding}">
+                                            Edit
+                                        </Button>
+                                        <Button x:Name="DeleteItem"
+                                                Click="deleteitem_click"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                        CommandParameter="{Binding}">
+                                            Delete
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
                     </DataGrid.Columns>
                     <DataGrid.Resources>
                         <Style TargetType="DataGrid">

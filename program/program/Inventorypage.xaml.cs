@@ -38,10 +38,10 @@ namespace program
         {
             try
             {
-                // Load items from the database
+             
                 inventory.LoadItemsFromDatabase();
 
-                // Set the data context of the DataGrid to the inventory
+              
                 UsersDataGrid.ItemsSource = inventory.inventoryItems;
             }
             catch (Exception ex)
@@ -49,7 +49,56 @@ namespace program
                 MessageBox.Show($"Error loading items: {ex.Message}");
             }
         }
+        private void editItem_Click(object sender, RoutedEventArgs e)
+        {
+         
+            var selectedItem = UsersDataGrid.SelectedItem;
+
+       
+            if (selectedItem != null)
+            {
+               
+                string itemName = ((KeyValuePair<string, int>)selectedItem).Key;
+
+               
+                Updateinventoryitem updateWindow = new Updateinventoryitem(itemName);
+                updateWindow.ShowDialog(); 
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to edit.");
+            }
+        }
+        private void deleteitem_click(object sender, RoutedEventArgs e)
+        {
+           
+            var selectedItem = UsersDataGrid.SelectedItem;
+
+      
+            if (selectedItem != null)
+            {
+                
+                string itemName = ((KeyValuePair<string, int>)selectedItem).Key;
+
+               
+                Inventory inventory = new Inventory();
+
+              
+                inventory.DeleteItemFromDatabase(itemName);
+                MessageBox.Show("Item added successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.");
+            }
+        }
+
 
     }
 
+
+
+
 }
+
+
