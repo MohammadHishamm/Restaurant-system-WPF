@@ -15,6 +15,7 @@ namespace program
 
         public DBconfig()
         {
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\PC\Documents\Res.mdf;Integrated Security=True;Connect Timeout=30"; conn = new SqlConnection(connectionString);
             connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Mohammad\OneDrive\Documents\restaurant.mdf;Integrated Security=True;Connect Timeout=30";
             conn = new SqlConnection(connectionString);
         }
@@ -117,7 +118,7 @@ namespace program
         public List<MenuItem> GetMenuItems()
         {
             List<MenuItem> menuItems = new List<MenuItem>();
-            string query = "SELECT AdId, Title, Description, Price FROM Menuitem";
+            string query = "SELECT MenuID, Title, Description, Price FROM Menuitem";
 
             try
             {

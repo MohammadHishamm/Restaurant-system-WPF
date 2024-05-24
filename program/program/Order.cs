@@ -21,7 +21,7 @@ namespace program
         public Order(int orderID, string status, int tableID)
         {
             db = DBconfig.Instance;
-            db = DBconfig.Instance;
+         
             OrderID = orderID;
             Status = status;
     
