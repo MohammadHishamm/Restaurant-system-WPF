@@ -26,10 +26,7 @@ namespace program
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+   
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -44,7 +41,7 @@ namespace program
                 Table table = new Table();
 
                 // Add the item using the Inventory class method
-                table.AddItemToDatabase(5, maxcapacity);
+                table.AddItemToDatabase(9, maxcapacity);
 
                 MessageBox.Show("Item added successfully.");
 
