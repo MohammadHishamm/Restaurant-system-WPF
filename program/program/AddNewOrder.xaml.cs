@@ -69,10 +69,13 @@ namespace program
             
                 int tableID = Convert.ToInt32(((ComboBoxItem)TablesComboBox.SelectedItem).Content);
 
+                Random random = new Random();
+                int randomID = random.Next(1, 101);
+
                 Order order = new Order();
 
                
-                order.AddItemToDatabase(5, "Pending", tableID);
+                order.AddItemToDatabase(randomID, "Pending", tableID);
 
                 MessageBox.Show("Item added successfully.");
 

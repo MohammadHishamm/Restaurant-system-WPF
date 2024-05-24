@@ -111,12 +111,13 @@
                                         <Button x:Name="EditItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
                                                 BorderThickness="0" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                                 CommandParameter="{Binding}">
-                                            <Image Source="../Resources/Images/details.png"/>
+                                            Edit 
                                         </Button>
-                                        <Button x:Name="DeleteItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
+
+                                        <Button x:Name="DeleteItem"  Click="deleteitem_click" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
                                                 BorderThickness="0" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                                 CommandParameter="{Binding}">
-                                            <Image Source="../Resources/Images/delete.png"/>
+                                           Delete
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>

@@ -85,7 +85,7 @@ namespace program
 
               
                 inventory.DeleteItemFromDatabase(itemName);
-                MessageBox.Show("Item added successfully.");
+                MessageBox.Show("Item deleted successfully.");
             }
             else
             {
