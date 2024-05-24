@@ -139,6 +139,40 @@ namespace program
 
 
 
+        public void UpdateOrderInDatabase(int orderID, string newStatus, int newTableID)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                // Check if the order exists
+                string checkQuery = $"SELECT COUNT(*) FROM [Order] WHERE ID = {orderID}";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, db.GetConn()))
+                {
+                    int orderExists = (int)checkCmd.ExecuteScalar();
+                    if (orderExists > 0)
+                    {
+                        // Update the order details
+                        string updateQuery = $"UPDATE [Order] SET Status = '{newStatus}', TableID = {newTableID} WHERE ID = {orderID}";
+                        db.InsertData(updateQuery);
+                    }
+                    else
+                    {
+                        throw new Exception($"Order with ID {orderID} does not exist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating order in database: {ex.Message}");
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+        }
+
+
 
 
         public void Attach(IObserver observer)

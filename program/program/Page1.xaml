@@ -108,7 +108,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto">
-                                        <Button x:Name="EditItem" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
+                                        <Button x:Name="EditItem"  Click="EditOrder_Click" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
                                                 BorderThickness="0" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                                 CommandParameter="{Binding}">
                                             Edit 
