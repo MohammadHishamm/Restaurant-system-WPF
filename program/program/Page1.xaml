@@ -45,18 +45,7 @@
                         </Button.Template>
                     </Button>
 
-                    <ComboBox x:Name="Users" Grid.Column="0" Margin="190,0,0,0" Height="40" Width="120" HorizontalAlignment="Left" 
-                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
-                              VerticalContentAlignment="Center" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Style="{DynamicResource ComboBox}"/>
-
-                    <ComboBox x:Name="Month" Grid.Column="1" Margin="0,0,50,0" Height="40" Width="120" HorizontalAlignment="Right" 
-                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
-                              VerticalContentAlignment="Center" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" Style="{DynamicResource ComboBox}"/>
-
-                    <ComboBox x:Name="Year" Grid.Column="1" Margin="0,0,190,0" Height="40" Width="120" HorizontalAlignment="Right" 
-                              FontFamily="{DynamicResource MyFont}" FontSize="12" HorizontalContentAlignment="Center" 
-                              VerticalContentAlignment="Center" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth}" Style="{DynamicResource ComboBox}"/>
-                </Grid>
+                       </Grid>
             </Border>
 
             <Border Grid.Row="1">
