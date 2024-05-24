@@ -102,6 +102,43 @@ namespace program
 
 
 
+        public void DeleteItemFromDatabase(int ID)
+        {
+            try
+            {
+               
+                db.OpenConnection();
+
+                
+                string deleteQuery = $"DELETE FROM [Order] WHERE ID = {ID}"; 
+                using (var command = new SqlCommand(deleteQuery, db.GetConn()))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine($"Order with ID {ID} removed from the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Order with ID {ID} not found in the database.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting item from the database: {ex.Message}");
+            }
+            finally
+            {
+                // Close the database connection
+                db.CloseConnection();
+            }
+        }
+
+
+
 
 
         public void Attach(IObserver observer)

@@ -48,6 +48,27 @@ namespace SideBar_Nav.Pages
             }
         }
 
+        private void deleteitem_click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = UsersDataGrid.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                // Assuming the DataGrid is bound to a collection of Order objects
+                Order selectedOrder = (Order)selectedItem;
+
+                try
+                {
+                    selectedOrder.DeleteItemFromDatabase(selectedOrder.OrderID);
+                    MessageBox.Show("Order deleted successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting order: {ex.Message}");
+                }
+            }
+           
+        }
 
 
 
