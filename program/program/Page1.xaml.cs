@@ -45,6 +45,21 @@ namespace SideBar_Nav.Pages
             AddNewOrder addItemWindow = new AddNewOrder(_user);
             addItemWindow.ShowDialog();
         }
+        private void EditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = UsersDataGrid.SelectedItem;
+
+            int itemid = ((Order)selectedItem).OrderID;
+
+
+            
+
+            EditOrder editItemWindow = new EditOrder(itemid);
+            editItemWindow.ShowDialog();
+
+
+
+        }
 
         private void LoadDataGrid()
         {

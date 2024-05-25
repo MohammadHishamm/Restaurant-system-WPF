@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +15,21 @@ using System.Windows.Shapes;
 namespace program
 {
     /// <summary>
-    /// Interaction logic for AddNewOrder.xaml
+    /// Interaction logic for EditOrder.xaml
     /// </summary>
-    public partial class AddNewOrder : Window
-    {private List<MenuItem> menuItems;
-        private User _user;
-        public AddNewOrder()
+    public partial class EditOrder : Window
+    {
+        private List<MenuItem> menuItems;
+        public int id;
+        public EditOrder()
         {
             InitializeComponent();
             LoadMenuItems();
         }
-        public AddNewOrder(User user)
+
+        public EditOrder( int Id):this()
         {
-            InitializeComponent();
-            LoadMenuItems();
-            _user = user;
+            id = Id;
         }
 
         private void LoadMenuItems()
@@ -42,15 +41,16 @@ namespace program
             ItemsComboBox.DisplayMemberPath = "Title";
             ItemsComboBox.SelectedValuePath = "MenuItemID";
         }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             MenuItem selectedMenuItem = ItemsComboBox.SelectedItem as MenuItem;
             if (selectedMenuItem != null)
             {
-               
+
                 string quantity = QuantityTextBox.Text;
 
-        
+
                 var newItem = new
                 {
                     Title = selectedMenuItem.Title,
@@ -62,37 +62,26 @@ namespace program
             }
         }
 
-        private void AddButton2_Click(object sender, RoutedEventArgs e)
+        private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-             
-                if (TablesComboBox.SelectedItem == null)
-                {
-                    MessageBox.Show("Please select a table.");
-                    return;
-                }
-
-            
-                int tableID = Convert.ToInt32(((ComboBoxItem)TablesComboBox.SelectedItem).Content);
-
-                Random random = new Random();
-                int randomID = random.Next(1, 101);
-
+                
                 Order order = new Order();
+               
+                int newTableID = Convert.ToInt32(((ComboBoxItem)TablesComboBox.SelectedItem).Content);
 
-                int userid = _user.GetId();
+                // Get new status from your UI, for example from a ComboBox or TextBox
+                string newStatus = "UpdatedStatus";
 
+                // Call the UpdateOrderInDatabase method
+               order.UpdateOrderInDatabase(id, newStatus, newTableID);
 
-                order.AddItemToDatabase(randomID, "Pending", tableID, userid);
-
-                MessageBox.Show("Item added successfully.");
-
-                this.Close();
+                MessageBox.Show("Order updated successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error updating order: {ex.Message}");
             }
         }
 
@@ -104,8 +93,5 @@ namespace program
             // Close the window
             this.Close();
         }
-
-
     }
 }
-
