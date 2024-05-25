@@ -23,11 +23,19 @@ namespace program
     public partial class Inventorypage : Page
     {
         private Inventory inventory;
+        private User _user;
         public Inventorypage()
         {
             InitializeComponent();
             inventory = new Inventory();
             LoadDataGrid();
+        }
+        public Inventorypage(User user)
+        {
+            InitializeComponent();
+            inventory = new Inventory();
+            LoadDataGrid();
+            _user = user;
         }
         private void AddNewItem_Click(object sender, RoutedEventArgs e)
         {

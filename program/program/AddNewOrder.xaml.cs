@@ -20,10 +20,17 @@ namespace program
     /// </summary>
     public partial class AddNewOrder : Window
     {private List<MenuItem> menuItems;
+        private User _user;
         public AddNewOrder()
         {
             InitializeComponent();
             LoadMenuItems();
+        }
+        public AddNewOrder(User user)
+        {
+            InitializeComponent();
+            LoadMenuItems();
+            _user = user;
         }
 
         private void LoadMenuItems()
@@ -74,8 +81,10 @@ namespace program
 
                 Order order = new Order();
 
-               
-                order.AddItemToDatabase(randomID, "Pending", tableID);
+                int userid = _user.GetId();
+
+
+                order.AddItemToDatabase(randomID, "Pending", tableID, userid);
 
                 MessageBox.Show("Item added successfully.");
 

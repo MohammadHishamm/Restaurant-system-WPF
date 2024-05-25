@@ -22,6 +22,9 @@ namespace SideBar_Nav.Pages
     public partial class Page1 : Page
     {
         private Order order;
+        private User _user;
+
+
         public Page1()
         {
             InitializeComponent();
@@ -29,9 +32,17 @@ namespace SideBar_Nav.Pages
             LoadDataGrid();
         }
 
+        public Page1(User user) 
+        {
+            InitializeComponent();
+            _user = user; 
+            order = new Order();
+            LoadDataGrid();
+        }
+
         private void AddNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            AddNewOrder addItemWindow = new AddNewOrder();
+            AddNewOrder addItemWindow = new AddNewOrder(_user);
             addItemWindow.ShowDialog();
         }
 
@@ -46,6 +57,7 @@ namespace SideBar_Nav.Pages
             {
                 MessageBox.Show($"Error loading items: {ex.Message}");
             }
+       
         }
 
         private void deleteitem_click(object sender, RoutedEventArgs e)

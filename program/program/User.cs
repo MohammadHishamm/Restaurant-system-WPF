@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class User   // Encapsulation 
+    public class User   // Encapsulation 
     {
         private int Id { get; set; }
         private string Email { get; set; }
         private string Password { get; set; }
+        public string Type { get; set; }
 
         // Constructor
         public User(string email, string password)
@@ -48,6 +49,14 @@ namespace program
         public string GetPassword()
         {
             return Password;
+        }
+        public string Gettype()
+        {
+            return Type;
+        }
+        public void Settype(string type)
+        {
+            Type= type;
         }
 
         // Setter for Password

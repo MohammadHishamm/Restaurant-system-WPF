@@ -21,11 +21,19 @@ namespace program
     public partial class Menupage : Page
     {
         private MenuItem menuItem;
+        private User _user;
         public Menupage()
         {
             InitializeComponent();
             menuItem = new MenuItem();
             LoadDataGrid();
+        }
+        public Menupage(User user)
+        {
+            InitializeComponent();
+            menuItem = new MenuItem();
+            LoadDataGrid();
+            _user = user;
         }
 
         private void AddNewItem_Click(object sender, RoutedEventArgs e)

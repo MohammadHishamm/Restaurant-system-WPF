@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 namespace program
 {
+
     internal class Order
     {
         public int OrderID { get; private set; }
@@ -34,7 +35,7 @@ namespace program
             db = DBconfig.Instance;
         }
 
-        public void AddItemToDatabase(int ID, String status, int table)
+        public void AddItemToDatabase(int ID, String status, int tableid,int userid)
         {
             try
             {
@@ -42,7 +43,7 @@ namespace program
                 db.OpenConnection();
 
           
-                string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID) VALUES ({ID}, '{status}' , {table})";
+                string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID, UserID) VALUES ({ID}, '{status}' , {tableid}, {userid})";
                 db.InsertData(insertQuery);
 
                 db.CloseConnection();

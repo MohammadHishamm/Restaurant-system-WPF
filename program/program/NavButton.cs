@@ -57,6 +57,13 @@ namespace program
         }
         public static readonly DependencyProperty NavlinkProperty = DependencyProperty.Register("Navlink", typeof(Uri), typeof(NavButton), new PropertyMetadata(null));
 
+        public User User
+        {
+            get { return (User)GetValue(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+
+        public static readonly DependencyProperty UserProperty = DependencyProperty.Register("User", typeof(User), typeof(NavButton), new PropertyMetadata(null));
 
         public Geometry Icon
         {

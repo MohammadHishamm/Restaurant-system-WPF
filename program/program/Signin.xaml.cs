@@ -58,18 +58,19 @@ namespace program
             string email = txtEmail.Text;
             string password = passwordBox.Password;
 
-            // Create a User object
             User user = new User(email, password);
+            
 
             // Perform user authentication
             UserCheck userChecker = new UserCheck();
             bool userExists = userChecker.SearchUser(user);
+            
 
             // Navigate or display message based on authentication result
             if (userExists)
             {
                
-                NavigationService.Navigate(new Index());
+                NavigationService.Navigate(new Index(user));
             }
             else
             {

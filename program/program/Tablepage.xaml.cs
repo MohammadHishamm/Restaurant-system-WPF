@@ -23,11 +23,19 @@ namespace program
     public partial class Tablepage : Page
     {
         private Table table;
+        private User _user;
         public Tablepage()
         {
             InitializeComponent();
             table = new Table();
             LoadDataGrid();
+        }
+        public Tablepage(User user)
+        {
+            InitializeComponent();
+            table = new Table();
+            LoadDataGrid();
+            _user = user;
         }
         private void AddNewItem_Click(object sender, RoutedEventArgs e)
         {

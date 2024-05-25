@@ -102,10 +102,11 @@ namespace program
                 
                 DBconfig db = new DBconfig();
                 db.OpenConnection();
-                string query = $"INSERT INTO [user] (email,password) VALUES (@Email, @Password)";
+                string query = $"INSERT INTO [user] (email,password, type) VALUES (@Email, @Password,@type)";
                 SqlCommand command = new SqlCommand(query, db.GetConn());
                 command.Parameters.AddWithValue("@Email", txtEmail1.Text);
                 command.Parameters.AddWithValue("@Password", encryption.Encrypt(passwordBox1.Password));
+                command.Parameters.AddWithValue("@type", "customer");
                 command.ExecuteNonQuery();
 
                 db.CloseConnection();
