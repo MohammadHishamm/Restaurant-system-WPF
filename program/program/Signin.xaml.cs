@@ -61,12 +61,10 @@ namespace program
             User user = new User(email, password);
             
 
-            // Perform user authentication
             UserCheck userChecker = new UserCheck();
             bool userExists = userChecker.SearchUser(user);
             
 
-            // Navigate or display message based on authentication result
             if (userExists)
             {
                

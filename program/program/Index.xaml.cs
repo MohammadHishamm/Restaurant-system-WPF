@@ -28,12 +28,14 @@ namespace program
         {
             InitializeComponent();
 
-
+            FilterNavItems();
         }
         public Index(User user)
         {
             InitializeComponent();
             _user = user;
+            FilterNavItems();
+           
             
         }
         private void FilterNavItems()
@@ -41,7 +43,7 @@ namespace program
             sidebar.Items.Clear();
             if (_user.Gettype() == "customer")
             {
-                sidebar.Items.Add(new NavButton { Navlink = new Uri("Page1.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Order", User = _user });
+                sidebar.Items.Add(new NavButton { Navlink = new Uri("Customerorderpage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Order", User = _user });
                 sidebar.Items.Add(new NavButton { Navlink = new Uri("Tablepage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Tables" });
                 sidebar.Items.Add(new NavButton { Navlink = new Uri("Menupage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Menu" });
             }
@@ -58,9 +60,11 @@ namespace program
             var selected = sidebar.SelectedItem as NavButton;
             if (selected != null)
             {
-                // Pass _user when navigating to Page1
-                if (selected.Navlink.OriginalString == "Page1.xaml")
+              
+                if (selected.Navlink.OriginalString == "Page1.xaml" )
                     navframe.Navigate(new Page1(_user));
+                else if (selected.Navlink.OriginalString == "Customerorderpage.xaml")
+                    navframe.Navigate(new Customerorderpage(_user));
                 else
                     navframe.Navigate(selected.Navlink);
             }

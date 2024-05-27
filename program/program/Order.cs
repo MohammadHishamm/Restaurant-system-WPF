@@ -100,6 +100,48 @@ namespace program
             return orders;
         }
 
+        public List<Order> LoadItemsFromDatabaseByUserId(int userId)
+        {
+            List<Order> orders = new List<Order>();
+
+            try
+            {
+                db.OpenConnection();
+
+             
+                string query = "SELECT ID, Status, TableID FROM [Order] WHERE UserID = @UserID";
+                using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
+                {
+                  
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string status = reader.GetString(1);
+                            int table = reader.GetInt32(2);
+
+                            Order order = new Order(id, status, table);
+                            orders.Add(order);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+              
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                db.CloseConnection();
+            }
+
+            return orders;
+        }
+
 
 
 
