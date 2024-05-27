@@ -22,6 +22,7 @@ namespace program
     /// </summary>
     public partial class Page5 : Page
     {
+       
         public Page5()
         {
             InitializeComponent();
@@ -110,8 +111,9 @@ namespace program
                 command.ExecuteNonQuery();
 
                 db.CloseConnection();
+                User user = new User(txtEmail1.Text, passwordBox1.Password, "customer");
 
-                NavigationService.Navigate(new Index());
+                NavigationService.Navigate(new Index(user));
             }
             else
             {

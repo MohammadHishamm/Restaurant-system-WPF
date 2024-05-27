@@ -14,11 +14,20 @@ namespace program
         public string Type { get; set; }
 
         // Constructor
-        public User(string email, string password)
+        public User(string email, string password, string type)
         {
             
             Email = email;
             Password = password;
+            Type = type;
+        }
+
+        public User(string email, string password)
+        {
+
+            Email = email;
+            Password = password;
+           
         }
 
         // Getter for Id
