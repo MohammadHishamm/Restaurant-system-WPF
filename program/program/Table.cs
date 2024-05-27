@@ -122,5 +122,44 @@ namespace program
             return tables;
         }
 
+        public void DeleteItemFromDatabase(int id)
+        {
+            try
+            {
+
+                db.OpenConnection();
+
+
+                string deleteQuery = $"DELETE FROM [Tables] WHERE id = {id}";
+                using (var command = new SqlCommand(deleteQuery, db.GetConn()))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine($"Order with ID {id} removed from the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Order with ID {id} not found in the database.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting item from the database: {ex.Message}");
+            }
+            finally
+            {
+                // Close the database connection
+                db.CloseConnection();
+            }
+        }
+
+
+
+       
+
     }
 }

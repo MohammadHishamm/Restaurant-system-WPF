@@ -56,7 +56,29 @@ namespace program
             }
         }
 
+        private void deleteitem_click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = UsersDataGrid.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                // Assuming the DataGrid is bound to a collection of Order objects
+                Table selectedOrder = (Table)selectedItem;
+
+                try
+                {
+                    selectedOrder.DeleteItemFromDatabase(selectedOrder.TableID);
+                    MessageBox.Show("Table deleted successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting Table: {ex.Message}");
+                }
+            }
+
+        }
     }
+
 
 
 }

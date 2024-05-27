@@ -68,6 +68,11 @@
                                         CommandParameter="{Binding}">
                                             <Image Source="../Resources/Images/delete.png"/>
                                         </Button>
+                                        <Button x:Name="DeleteItem"  Click="deleteitem_click" Height="auto" Width="auto" Background="Transparent" HorizontalAlignment="Center" BorderBrush="Transparent"
+        BorderThickness="0" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+        CommandParameter="{Binding}">
+                                            Delete
+                                        </Button>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
