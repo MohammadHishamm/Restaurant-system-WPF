@@ -81,7 +81,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Title}"/>
                         <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
+                       
                       
                     </DataGrid.Columns>
 

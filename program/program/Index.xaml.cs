@@ -44,8 +44,8 @@ namespace program
             if (_user.Gettype() == "customer")
             {
                 sidebar.Items.Add(new NavButton { Navlink = new Uri("Customerorderpage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Order", User = _user });
-                sidebar.Items.Add(new NavButton { Navlink = new Uri("Tablepage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Tables" });
-                sidebar.Items.Add(new NavButton { Navlink = new Uri("Menupage.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Menu" });
+               
+                sidebar.Items.Add(new NavButton { Navlink = new Uri("CustomerMenu.xaml", UriKind.Relative), Margin = new Thickness(0, 20, 0, 10), Padding = new Thickness(6), Text = "Menu" });
             }
             else if (_user.Gettype() == "admin")
             {

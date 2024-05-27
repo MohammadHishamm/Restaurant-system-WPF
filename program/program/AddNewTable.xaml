@@ -29,8 +29,10 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center">
+                    
                     <TextBlock Text="{DynamicResource Seats}" Foreground="{DynamicResource BackgroundText}" FontSize="12" FontFamily="{DynamicResource MyFont}" 
                            Margin="0,15,0,5"/>
+                    <TextBlock Text="Max capacity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
                     <TextBox x:Name="NameTextBox" Grid.Row="0"  FontSize="13" FontFamily="{DynamicResource MyFont}" Foreground="{DynamicResource BackgroundText}" 
                          Background="Transparent" BorderBrush="{DynamicResource BackgroundText}" BorderThickness="0,0,0,2" Height="28" 
                          VerticalContentAlignment="Center"
