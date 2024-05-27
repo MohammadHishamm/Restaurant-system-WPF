@@ -40,8 +40,12 @@ namespace program
                 // Create an instance of the Inventory class
                 Table table = new Table();
 
-                // Add the item using the Inventory class method
-                table.AddItemToDatabase(9, maxcapacity);
+                // Add the item using the Inventory class method\
+
+                Random random = new Random();
+                int randomID = random.Next(1, 101);
+
+                table.AddItemToDatabase(randomID, maxcapacity);
 
                 MessageBox.Show("Item added successfully.");
 
