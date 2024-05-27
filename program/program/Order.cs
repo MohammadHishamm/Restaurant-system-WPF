@@ -14,18 +14,17 @@ namespace program
     {
         public int OrderID { get; private set; }
         public string Status { get; set; }
-        public MenuItem MenuItem { get; private set; }
+        public String MenuItem { get; private set; }
         public int TableID { get; private set; }
-        private List<IObserver> observers;
+        private readonly List<IObserver> observers;
         private readonly DBconfig db;
-        
-        public Order(int orderID, string status, int tableID)
+
+        public Order(int orderID, string status, int tableID, String menuItem)
         {
             db = DBconfig.Instance;
-         
             OrderID = orderID;
             Status = status;
-    
+            MenuItem = menuItem;
             TableID = tableID;
             observers = new List<IObserver>();
         }
@@ -33,33 +32,26 @@ namespace program
         public Order()
         {
             db = DBconfig.Instance;
+            observers = new List<IObserver>();
         }
 
-        public void AddItemToDatabase(int ID, String status, int tableid,int userid)
+        public void AddItemToDatabase(int ID, string status, int tableid, int userid, String menuItem)
         {
             try
             {
-          
                 db.OpenConnection();
-
-          
-                string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID, UserID) VALUES ({ID}, '{status}' , {tableid}, {userid})";
+                string insertQuery = $"INSERT INTO [Order] (ID, Status, TableID, UserID, MenuItem) VALUES ({ID}, '{status}', {tableid}, {userid}, '{menuItem}')";
                 db.InsertData(insertQuery);
-
-                db.CloseConnection();
             }
             catch (Exception ex)
             {
-             
                 throw new Exception($"Error adding item to database: {ex.Message}");
             }
+            finally
+            {
+                db.CloseConnection();
+            }
         }
-
-
-
-
-
-
 
         public List<Order> LoadItemsFromDatabase()
         {
@@ -67,10 +59,8 @@ namespace program
 
             try
             {
-                
                 db.OpenConnection();
-
-                string query = "SELECT ID, Status, TableID FROM [Order]";
+                string query = "SELECT ID, Status, TableID, MenuItem FROM [Order]";
                 using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -80,8 +70,12 @@ namespace program
                             int id = reader.GetInt32(0);
                             string status = reader.GetString(1);
                             int table = reader.GetInt32(2);
+                            string menuItemTitle = reader.GetString(3);
 
-                            Order order = new Order(id, status, table);
+
+                    
+
+                            Order order = new Order(id, status, table, menuItemTitle);
                             orders.Add(order);
                         }
                     }
@@ -93,12 +87,13 @@ namespace program
             }
             finally
             {
-                
                 db.CloseConnection();
             }
 
             return orders;
         }
+
+      
 
         public List<Order> LoadItemsFromDatabaseByUserId(int userId)
         {
@@ -107,14 +102,10 @@ namespace program
             try
             {
                 db.OpenConnection();
-
-             
-                string query = "SELECT ID, Status, TableID FROM [Order] WHERE UserID = @UserID";
+                string query = "SELECT ID, Status, TableID, MenuItem FROM [Order] WHERE UserID = @UserID";
                 using (SqlCommand cmd = new SqlCommand(query, db.GetConn()))
                 {
-                  
                     cmd.Parameters.AddWithValue("@UserID", userId);
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -122,8 +113,12 @@ namespace program
                             int id = reader.GetInt32(0);
                             string status = reader.GetString(1);
                             int table = reader.GetInt32(2);
+                            string menuItemTitle = reader.GetString(3);
 
-                            Order order = new Order(id, status, table);
+
+                            
+
+                            Order order = new Order(id, status, table, menuItemTitle);
                             orders.Add(order);
                         }
                     }
@@ -131,8 +126,7 @@ namespace program
             }
             catch (Exception ex)
             {
-              
-                Console.WriteLine("An error occurred: " + ex.Message);
+                throw new Exception($"Error loading items from database: {ex.Message}");
             }
             finally
             {
@@ -142,32 +136,13 @@ namespace program
             return orders;
         }
 
-
-
-
         public void DeleteItemFromDatabase(int ID)
         {
             try
             {
-               
                 db.OpenConnection();
-
-                
-                string deleteQuery = $"DELETE FROM [Order] WHERE ID = {ID}"; 
-                using (var command = new SqlCommand(deleteQuery, db.GetConn()))
-                {
-                    command.Parameters.AddWithValue("@ID", ID);
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        Console.WriteLine($"Order with ID {ID} removed from the database.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Order with ID {ID} not found in the database.");
-                    }
-                }
+                string deleteQuery = $"DELETE FROM [Order] WHERE ID = {ID}";
+                db.InsertData(deleteQuery);
             }
             catch (Exception ex)
             {
@@ -175,35 +150,17 @@ namespace program
             }
             finally
             {
-                // Close the database connection
                 db.CloseConnection();
             }
         }
-
-
 
         public void UpdateOrderInDatabase(int orderID, string newStatus, int newTableID)
         {
             try
             {
                 db.OpenConnection();
-
-                // Check if the order exists
-                string checkQuery = $"SELECT COUNT(*) FROM [Order] WHERE ID = {orderID}";
-                using (SqlCommand checkCmd = new SqlCommand(checkQuery, db.GetConn()))
-                {
-                    int orderExists = (int)checkCmd.ExecuteScalar();
-                    if (orderExists > 0)
-                    {
-                        // Update the order details
-                        string updateQuery = $"UPDATE [Order] SET Status = '{newStatus}', TableID = {newTableID} WHERE ID = {orderID}";
-                        db.InsertData(updateQuery);
-                    }
-                    else
-                    {
-                        throw new Exception($"Order with ID {orderID} does not exist.");
-                    }
-                }
+                string updateQuery = $"UPDATE [Order] SET Status = '{newStatus}', TableID = {newTableID} WHERE ID = {orderID}";
+                db.InsertData(updateQuery);
             }
             catch (Exception ex)
             {
@@ -214,9 +171,6 @@ namespace program
                 db.CloseConnection();
             }
         }
-
-
-
 
         public void Attach(IObserver observer)
         {
