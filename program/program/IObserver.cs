@@ -9,6 +9,6 @@ namespace program
     internal interface IObserver
     {
         void Update(Order order);
-        void NotifyCustomer(Order order);
+      
     }
 }

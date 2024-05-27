@@ -21,36 +21,15 @@ namespace program
             CustomerID = customerID;
         }
 
-        private int GenerateOrderId()
-        {
-
-            Random rand = new Random();
-            return rand.Next(1, 10000);
-
-        }
-        public void PlaceOrder(Waiter waiter, List<MenuItem> menuItems)
-        {
-
-            int orderId = GenerateOrderId();
-            //Order order = new Order(orderId, "Pending");
-            foreach (var item in menuItems)
-            {
-               // order.AddMenuItem(item);
-            }
-            //waiter.CreateOrder(order);
-
-            Console.WriteLine($"Order placed successfully. Order ID: {orderId}");
-        }
+    
+     
         public void Update(Order order)
         {
-           
+            Console.WriteLine($"Customer {Name}: Your order {order.OrderID} status is now {order.Status}");
+
         }
 
-        public void NotifyCustomer(Order order)
-        {
-           
-            Console.WriteLine($"Dear {Name}, your order {order.OrderID} status has been updated to {order.Status}.");
-        }
+    
 
     }
 }

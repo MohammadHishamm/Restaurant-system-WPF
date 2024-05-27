@@ -233,18 +233,14 @@ namespace program
             foreach (var observer in observers)
             {
                 observer.Update(this);
-                observer.NotifyCustomer(this);
             }
         }
-
 
         public void ChangeStatus(string newStatus)
         {
             Status = newStatus;
             Notify();
-
         }
-
 
 
     }

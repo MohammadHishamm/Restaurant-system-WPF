@@ -25,10 +25,6 @@ namespace program
         {
             Console.WriteLine($"Order {order.OrderID} status changed to {order.Status}");
         }
-        public void NotifyCustomer(Order order)
-        {
-            
-            Console.WriteLine($"Order {order.OrderID} status changed to {order.Status}");
-        }
+     
     }
 }
