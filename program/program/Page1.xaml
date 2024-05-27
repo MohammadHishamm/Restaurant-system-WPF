@@ -93,7 +93,13 @@
                         <DataGridTextColumn Header="Id" Binding="{Binding OrderID}" Width="*"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
                         <DataGridTextColumn Header="Table" Binding="{Binding TableID}" Width="*"/>
-                    
+                        <DataGridTextColumn Header="Menu Item" Width="*">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="MenuItem.Title"/>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+
                         <DataGridTemplateColumn Header="#" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

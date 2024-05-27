@@ -13,8 +13,9 @@ namespace program
             public int MenuItemID { get; private set; }
             public string Title { get; set; }
             public string Description { get; set; }
-            public decimal Price { get; set; }
-         private readonly DBconfig db;
+            public virtual decimal Price { get; set; }
+
+            private readonly DBconfig db;
 
 
         public MenuItem(int menuItemID, string title, string description, decimal price)
@@ -95,14 +96,7 @@ namespace program
             return menuItems;
         }
 
-
-
-
-
-
-
-
-
+       
 
 
 
@@ -111,4 +105,4 @@ namespace program
     }
 
 
-    }
+}

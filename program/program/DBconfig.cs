@@ -150,7 +150,40 @@ namespace program
 
             return menuItems;
         }
+        public MenuItem GetMenuItemByTitle(string title)
+        {
+            MenuItem menuItem = null;
+            string query = "SELECT MenuID, Title, Description, Price FROM Menuitem WHERE Title = @Title";
 
+            try
+            {
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Title", title);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string description = reader.GetString(2);
+                            decimal price = reader.GetDecimal(3);
+                            menuItem = new MenuItem(id, title, description, price);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error occurred while fetching menu item: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return menuItem;
+        }
 
     }
 }

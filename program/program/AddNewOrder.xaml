@@ -31,7 +31,9 @@
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <TextBlock Text="Items" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
                     <ComboBox x:Name="ItemsComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center" 
-                              ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"/>
+          DisplayMemberPath="Title" SelectedValuePath="Title" 
+          ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"/>
+
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="1">
@@ -46,9 +48,17 @@
 
 
                 <StackPanel Orientation="Vertical" Grid.Row="2">
-                    <TextBlock Text="Quantity" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
-                    <TextBox x:Name="QuantityTextBox" FontSize="13" FontFamily="Arial" Foreground="Black" Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center"
-                             Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Extra Toppings" Foreground="Black" FontSize="12" FontFamily="Arial" Margin="0,15,0,5"/>
+                    <ComboBox x:Name="ToppingsComboBox" FontFamily="Arial" Height="28" Width="auto" VerticalContentAlignment="Center">
+                        <ComboBoxItem>Extra Cheese</ComboBoxItem>
+                        <ComboBoxItem>Bacon Bits</ComboBoxItem>
+                        <ComboBoxItem>Mushrooms</ComboBoxItem>
+                        <ComboBoxItem>Onions</ComboBoxItem>
+                        <ComboBoxItem>Olives</ComboBoxItem>
+
+
+                   
+                    </ComboBox>
                 </StackPanel>
 
                 <Button Grid.Row="3" Content="Add" Foreground="Black" FontSize="12" FontFamily="Arial" Width="100" Height="40" 

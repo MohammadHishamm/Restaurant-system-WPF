@@ -48,14 +48,14 @@ namespace program
             if (selectedMenuItem != null)
             {
                
-                string quantity = QuantityTextBox.Text;
+               
 
         
                 var newItem = new
                 {
                     Title = selectedMenuItem.Title,
                     Price = selectedMenuItem.Price,
-                    Quantity = quantity
+                
                 };
 
                 UsersDataGrid.Items.Add(newItem);
@@ -66,14 +66,21 @@ namespace program
         {
             try
             {
-             
+                if (ItemsComboBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select an item.");
+                    return;
+                }
+
+                MenuItem selectedItem = (MenuItem)ItemsComboBox.SelectedItem;
+                string menuItemTitle = selectedItem.Title;
+
                 if (TablesComboBox.SelectedItem == null)
                 {
                     MessageBox.Show("Please select a table.");
                     return;
                 }
 
-            
                 int tableID = Convert.ToInt32(((ComboBoxItem)TablesComboBox.SelectedItem).Content);
 
                 Random random = new Random();
@@ -83,8 +90,7 @@ namespace program
 
                 int userid = _user.GetId();
 
-
-                order.AddItemToDatabase(randomID, "Pending", tableID, userid);
+                order.AddItemToDatabase(randomID, "Pending", tableID, userid, menuItemTitle);
 
                 MessageBox.Show("Item added successfully.");
 
@@ -95,7 +101,6 @@ namespace program
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-
 
 
 
