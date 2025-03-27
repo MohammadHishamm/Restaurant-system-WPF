@@ -1,0 +1,52 @@
+CREATE TABLE [dbo].[Inventory] (
+    [Name]     VARCHAR (50) NOT NULL,
+    [Quantity] INT          NOT NULL
+);
+
+
+
+//-------------------------------------------------------------------//
+CREATE TABLE [dbo].[Menuitem] (
+    [MenuID]      INT             NOT NULL,
+    [Title]       VARCHAR (50)    NOT NULL,
+    [Description] VARCHAR (50)    NOT NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [ToppingIDs]  INT             NULL,
+    PRIMARY KEY CLUSTERED ([MenuID] ASC)
+);
+
+
+//-------------------------------------------------------------------//
+CREATE TABLE [dbo].[Order] (
+    [ID]       INT           NOT NULL,
+    [Status]   VARCHAR (50)  NOT NULL,
+    [TableID]  INT           NOT NULL,
+    [UserID]   INT           NOT NULL,
+    [MenuItem] VARCHAR (MAX) NOT NULL
+);
+
+
+//-------------------------------------------------------------------//
+CREATE TABLE [dbo].[Tables] (
+    [id]          INT NOT NULL,
+    [maxcapacity] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+
+//-------------------------------------------------------------------//
+CREATE TABLE [dbo].[Toppings] (
+    [ToppingID] INT          NOT NULL,
+    [Name]      VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([ToppingID] ASC)
+);
+
+//-------------------------------------------------------------------//
+CREATE TABLE [dbo].[user] (
+    [id]       INT          IDENTITY (1, 1) NOT NULL,
+    [email]    VARCHAR (50) NOT NULL,
+    [password] VARCHAR (50) NOT NULL,
+    [type]     VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
